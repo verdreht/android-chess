@@ -1,7 +1,5 @@
 package net.nightcodes.androidchess.server;
 
-import net.nightcodes.androidchess.ServerHandler;
-
 import org.snf4j.core.SelectorLoop;
 import org.snf4j.core.factory.AbstractSessionFactory;
 import org.snf4j.core.handler.IStreamHandler;
