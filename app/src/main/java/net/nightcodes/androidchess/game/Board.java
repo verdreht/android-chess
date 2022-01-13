@@ -5,12 +5,11 @@ import androidx.annotation.NonNull;
 import net.nightcodes.androidchess.game.entity.Bishop;
 import net.nightcodes.androidchess.game.entity.King;
 import net.nightcodes.androidchess.game.entity.Knight;
+import net.nightcodes.androidchess.game.entity.Pawn;
 import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
-
-import java.util.Arrays;
 
 public class Board {
 
@@ -38,10 +37,23 @@ public class Board {
         getField(5, 1).setEntity(new King());
         getField(6, 1).setEntity(new Bishop());
         getField(7, 1).setEntity(new Knight());
-        getField(8, 1).setEntity(new Knight());
+        getField(8, 1).setEntity(new Rook());
 
         for(int i = 1; i <= 8; i++) {
-            getField(i, 2).setEntity(new Knight());
+            getField(i, 2).setEntity(new Pawn());
+        }
+
+        getField(1, 8).setEntity(new Rook());
+        getField(2, 8).setEntity(new Knight());
+        getField(3, 8).setEntity(new Bishop());
+        getField(4, 8).setEntity(new King());
+        getField(5, 8).setEntity(new Queen());
+        getField(6, 8).setEntity(new Bishop());
+        getField(7, 8).setEntity(new Knight());
+        getField(8, 8).setEntity(new Rook());
+
+        for(int i = 1; i <= 8; i++) {
+            getField(i, 7).setEntity(new Pawn());
         }
 
     }
@@ -49,7 +61,18 @@ public class Board {
     @NonNull
     @Override
     public String toString() {
-        return (Arrays.deepToString(board));
+        StringBuilder builder = new StringBuilder();
+
+        for (Field[] x : board)
+        {
+            for (Field y : x)
+            {
+                builder.append(y).append(" ");
+            }
+            builder.append("\n");
+        }
+
+        return builder.toString();
     }
 
     public Field getField(int x, int y) {

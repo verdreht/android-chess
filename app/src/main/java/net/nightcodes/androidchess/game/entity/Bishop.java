@@ -20,7 +20,7 @@ public class Bishop implements IEntity {
     }
 
     @Override
-    public String toString() {
-        return "L";
+    public String consoleIcon() {
+        return "♗";
     }
 }

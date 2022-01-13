@@ -20,7 +20,7 @@ public class Rook implements IEntity {
     }
 
     @Override
-    public String toString() {
-        return "T";
+    public String consoleIcon() {
+        return "♖";
     }
 }

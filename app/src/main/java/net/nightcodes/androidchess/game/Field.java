@@ -1,5 +1,7 @@
 package net.nightcodes.androidchess.game;
 
+import androidx.annotation.NonNull;
+
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 
@@ -22,5 +24,11 @@ public class Field {
 
     public IEntity getFieldEntity() {
         return fieldEntity;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        if(fieldEntity != null) return fieldEntity.consoleIcon(); else return "  ";
     }
 }

@@ -20,7 +20,7 @@ public class Pawn implements IEntity {
     }
 
     @Override
-    public String toString() {
-        return "B";
+    public String consoleIcon() {
+        return "♙";
     }
 }

@@ -20,7 +20,7 @@ public class Knight implements IEntity {
     }
 
     @Override
-    public String toString() {
-        return "S";
+    public String consoleIcon() {
+        return "♘";
     }
 }

@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalLocationException e) {
             e.printStackTrace();
         }
+
+        new Thread(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Board:\n" + board.toString());
+        }).start();
     }
 
     @Override
