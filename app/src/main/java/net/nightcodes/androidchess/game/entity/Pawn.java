@@ -7,12 +7,12 @@ import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
 
 @EntityIdentification(
-        name = "Queen",
+        name = "Pawn",
         imageAsset = "/path/to/image",
-        movementPermission = {MovementPermission.DIAGONAL_UNLIMITED, MovementPermission.STRAIGHT_UNLIMITED}
+        movementPermission = {MovementPermission.STRAIGHT_RESTRICTED}
 )
 
-public class Queen implements IEntity {
+public class Pawn implements IEntity {
 
     @Override
     public MoveResult canMove(Location location) {
@@ -21,6 +21,6 @@ public class Queen implements IEntity {
 
     @Override
     public String toString() {
-        return "Q";
+        return "B";
     }
 }

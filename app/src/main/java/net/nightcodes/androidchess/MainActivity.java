@@ -14,6 +14,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import net.nightcodes.androidchess.databinding.ActivityMainBinding;
+import net.nightcodes.androidchess.game.Board;
+import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.ServerThread;
 
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private final Server server = Server.getInstance(2710);
 
+    private final Board board = Board.getInstance();
+
     private Thread serverThread;
 
     @Override
@@ -39,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         serverThread = new Thread(new ServerThread(server));
         serverThread.setName("server");
         serverThread.start();
+
+        try {
+            board.setup();
+        } catch (IllegalLocationException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
