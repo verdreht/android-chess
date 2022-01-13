@@ -1,17 +1,13 @@
 package net.nightcodes.androidchess;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import net.nightcodes.androidchess.databinding.ActivityMainBinding;
 import net.nightcodes.androidchess.game.Board;
@@ -19,16 +15,16 @@ import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocation
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.ServerThread;
 
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private final Server server = Server.getInstance(2710);
+
+    //Buttons
+    private Button hostGame;
+    private Button joinGame;
 
     private final Board board = Board.getInstance();
 
@@ -37,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.launch);
+        hostGame = findViewById(R.id.btn_hostGame);
+        joinGame = findViewById(R.id.btn_joinGame);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
 
         serverThread = new Thread(new ServerThread(server));
         serverThread.setName("server");
@@ -59,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
             }
             System.out.println("Board:\n" + board.toString());
         }).start();
+
+        //Host Game
+        hostGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onHostGame();
+            }
+        });
     }
 
     @Override
@@ -81,5 +87,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onHostGame() {
+        Intent intent = new Intent(this, Game.class);
+        startActivity(intent);
     }
 }
