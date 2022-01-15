@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="host_button">Host game</string>
     <string name="join_button">Join game</string>
+    <string name="game_search">Scanning local network for games...</string>
 </resources>

@@ -1,25 +1,29 @@
 package net.nightcodes.androidchess;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.nightcodes.androidchess.databinding.ActivityMainBinding;
+//import net.nightcodes.androidchess.databinding.ActivityMainBinding;
 import net.nightcodes.androidchess.game.Board;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.ServerThread;
+import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
+import net.nightcodes.androidchess.server.broadcast.BroadcastThread;
 
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    //private ActivityMainBinding binding;
     private final Server server = Server.getInstance(2710);
 
     //Buttons
@@ -28,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final Board board = Board.getInstance();
 
-    private Thread serverThread;
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +41,7 @@ public class MainActivity extends AppCompatActivity {
         joinGame = findViewById(R.id.btn_joinGame);
 
 
-
-        serverThread = new Thread(new ServerThread(server));
-        serverThread.setName("server");
-        serverThread.start();
+        new Thread(new BroadcastThread(new BroadcastSender(server, 4445), 10)).start();
 
         try {
             board.setup();
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 onHostGame();
             }
         });
+
+        joinGame.setOnClickListener(view -> scanGames());
     }
 
     @Override
@@ -87,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void scanGames() {
+        Intent intent = new Intent(this, Join.class);
+        startActivity(intent);
     }
 
     public void onHostGame() {

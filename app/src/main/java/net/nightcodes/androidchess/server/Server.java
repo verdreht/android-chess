@@ -12,6 +12,7 @@ import java.nio.channels.SocketChannel;
 public class Server {
 
     private final int port;
+    private String serverName;
 
     private Server(int port) {
         this.port = port;
@@ -41,4 +42,15 @@ public class Server {
 
     }
 
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public int getPort() {
+        return port;
+    }
 }
