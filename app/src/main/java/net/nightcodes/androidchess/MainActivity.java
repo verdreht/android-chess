@@ -3,6 +3,7 @@ package net.nightcodes.androidchess;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
 
     //private ActivityMainBinding binding;
-    private final Server server = Server.getInstance(2710);
+    private static final Server server = Server.getInstance(2710);
 
     //Buttons
     private Button hostGame;
@@ -99,5 +100,9 @@ public class MainActivity extends AppCompatActivity {
     public void onHostGame() {
         Intent intent = new Intent(this, Game.class);
         startActivity(intent);
+    }
+
+    public static Server getServer() {
+        return server;
     }
 }

@@ -11,19 +11,17 @@ import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 public class Game extends AppCompatActivity {
 
     private Thread serverThread;
-    private final BroadcastSender broadcast;
+    private BroadcastSender broadcast;
 
-    private final Server server;
-
-    public Game(Server server) {
-        this.server = server;
-        this.broadcast = new BroadcastSender(server, 4445);
-    }
+    private Server server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        this.server = MainActivity.getServer();
+        this.broadcast = new BroadcastSender(server, 4445);
 
         serverThread = new Thread(new ServerThread(server));
         serverThread.setName("server");
