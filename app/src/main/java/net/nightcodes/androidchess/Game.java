@@ -20,12 +20,6 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-        this.server = MainActivity.getServer();
-        this.broadcast = new BroadcastSender(server, 4445);
-
-        serverThread = new Thread(new ServerThread(server));
-        serverThread.setName("server");
-        serverThread.start();
     }
 
     public Thread getServerThread() {

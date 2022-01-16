@@ -10,6 +10,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="host_button">Host game</string>
-    <string name="join_button">Join game</string>
+    <string name="join_button">Join</string>
     <string name="game_search">Scanning local network for games...</string>
+    <string name="game_host">Create a game lobby</string>
+    <string name="game_host_title">Create lobby</string>
+    <string name="setting_cheats_enabled" />
+    <string name="game_host_searching_enemy">Searching enemy...</string>
+    <string name="name">Name</string>
 </resources>

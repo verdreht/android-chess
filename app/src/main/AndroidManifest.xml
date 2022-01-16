@@ -16,7 +16,10 @@
             android:name=".Game"
             android:exported="false" />
         <activity
-            android:name=".Join"
+            android:name=".ui.networkscan.Join"
+            android:exported="false" />
+        <activity
+            android:name=".Host"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

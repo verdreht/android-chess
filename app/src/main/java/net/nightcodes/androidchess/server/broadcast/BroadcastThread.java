@@ -12,7 +12,7 @@ public class BroadcastThread implements Runnable {
     private final BroadcastSender broadcastClient;
     private final int interval;
 
-    private final boolean broadcasting;
+    private boolean broadcasting;
 
     public BroadcastThread(BroadcastSender broadcastClient, int interval) {
         this.broadcastClient = broadcastClient;
@@ -36,5 +36,13 @@ public class BroadcastThread implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean isBroadcasting() {
+        return broadcasting;
+    }
+
+    public void setBroadcasting(boolean broadcasting) {
+        this.broadcasting = broadcasting;
     }
 }

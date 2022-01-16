@@ -3,7 +3,6 @@ package net.nightcodes.androidchess;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,16 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.nightcodes.androidchess.game.Board;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 import net.nightcodes.androidchess.server.Server;
-import net.nightcodes.androidchess.server.ServerThread;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 import net.nightcodes.androidchess.server.broadcast.BroadcastThread;
+import net.nightcodes.androidchess.ui.networkscan.Join;
 
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
     //private ActivityMainBinding binding;
-    private static final Server server = Server.getInstance(2710);
 
     //Buttons
     private Button hostGame;
@@ -41,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         hostGame = findViewById(R.id.btn_hostGame);
         joinGame = findViewById(R.id.btn_joinGame);
 
-
-        new Thread(new BroadcastThread(new BroadcastSender(server, 4445), 10)).start();
 
         try {
             board.setup();
@@ -98,11 +94,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onHostGame() {
-        Intent intent = new Intent(this, Game.class);
+        Intent intent = new Intent(this, Host.class);
         startActivity(intent);
     }
 
-    public static Server getServer() {
-        return server;
-    }
 }
