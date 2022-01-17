@@ -19,6 +19,8 @@ import net.nightcodes.androidchess.ui.networkscan.Join;
 
 import java.util.concurrent.TimeUnit;
 
+//import net.nightcodes.androidchess.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
     //private ActivityMainBinding binding;
