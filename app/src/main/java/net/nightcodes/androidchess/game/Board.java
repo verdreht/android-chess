@@ -1,6 +1,9 @@
 package net.nightcodes.androidchess.game;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import net.nightcodes.androidchess.game.entity.Bishop;
 import net.nightcodes.androidchess.game.entity.King;
@@ -8,15 +11,25 @@ import net.nightcodes.androidchess.game.entity.Knight;
 import net.nightcodes.androidchess.game.entity.Pawn;
 import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
+import net.nightcodes.androidchess.game.entity.base.IEntity;
+import net.nightcodes.androidchess.game.entity.listener.EventManager;
+import net.nightcodes.androidchess.game.logic.MoveResult;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class Board {
 
     private final Field[][] board = new Field[8][8];
+    private EventManager eventManager;
 
-    public static Board getInstance() {
-        return new Board();
+    public static Board getInstance(EventManager manager) {
+        return new Board(manager);
+    }
+
+    private Board(EventManager manager) {
+        this.eventManager = manager;
     }
 
     public void setup() throws IllegalLocationException {
@@ -58,6 +71,20 @@ public class Board {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public boolean move(IEntity entity, Location location) {
+        try {
+            if(getEventManager().call(EventManager.EventType.ENTITY_LOCATION_CHANGE, entity, location)) {
+                MoveResult moveResult = entity.canMove(location);
+                
+                return true;
+            }
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -79,4 +106,7 @@ public class Board {
         return board[x - 1][y - 1];
     }
 
+    public EventManager getEventManager() {
+        return eventManager;
+    }
 }

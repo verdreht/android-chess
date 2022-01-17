@@ -7,7 +7,7 @@ import net.nightcodes.androidchess.game.logic.movement.Location;
 public class LocationChangeListenerTest extends EntityListener {
 
     @Override
-    public void onEntityLocationChange(EntityLocationChangedEvent event) {
+    public boolean onEntityLocationChange(EntityLocationChangedEvent event) {
         //Get the moved entity.
         IEntity entity = event.getEntity();
 
@@ -18,6 +18,6 @@ public class LocationChangeListenerTest extends EntityListener {
         System.out.println("New Location: " + newLocation);
 
         //Cancels the event and stop propagation.
-        event.setCanceled(true);
+        return true;
     }
 }

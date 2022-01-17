@@ -4,6 +4,6 @@ import net.nightcodes.androidchess.game.entity.listener.location.EntityLocationC
 
 public class EntityListener {
 
-    public void onEntityLocationChange(EntityLocationChangedEvent event) {}
+    public boolean onEntityLocationChange(EntityLocationChangedEvent event) {return false;}
 
 }

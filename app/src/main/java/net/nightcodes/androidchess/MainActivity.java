@@ -3,7 +3,6 @@ package net.nightcodes.androidchess;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,16 +11,10 @@ import android.widget.Button;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-//import net.nightcodes.androidchess.databinding.ActivityMainBinding;
 import net.nightcodes.androidchess.game.Board;
-import net.nightcodes.androidchess.game.entity.Knight;
-import net.nightcodes.androidchess.game.entity.Rook;
-import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
-import net.nightcodes.androidchess.game.entity.base.EntityInformation;
+import net.nightcodes.androidchess.game.entity.listener.EventManager;
+import net.nightcodes.androidchess.game.entity.listener.LocationChangeListenerTest;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
-import net.nightcodes.androidchess.server.Server;
-import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
-import net.nightcodes.androidchess.server.broadcast.BroadcastThread;
 import net.nightcodes.androidchess.ui.networkscan.Join;
 
 import java.util.concurrent.TimeUnit;
@@ -34,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Button hostGame;
     private Button joinGame;
 
-    private final Board board = Board.getInstance();
+    private final EventManager eventManager = new EventManager();
+    private final Board board = Board.getInstance(eventManager);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -49,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalLocationException e) {
             e.printStackTrace();
         }
+
+        eventManager.registerListener(new LocationChangeListenerTest());
 
         new Thread(() -> {
             try {
