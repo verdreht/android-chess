@@ -25,56 +25,56 @@
             android:paddingEnd="5dp">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/field_h1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/field_h2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/field_h3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/field_h4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/field_h5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/field_h6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/field_h7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/field_h8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
@@ -89,56 +89,56 @@
             android:paddingEnd="5dp">
 
             <Button
-                android:id="@+id/button17"
+                android:id="@+id/field_g1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/field_g2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/field_g3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button12"
+                android:id="@+id/field_g4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/field_g5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/field_g6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button15"
+                android:id="@+id/field_g7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button16"
+                android:id="@+id/field_g8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
@@ -153,56 +153,56 @@
             android:paddingEnd="5dp">
 
             <Button
-                android:id="@+id/button18"
+                android:id="@+id/field_f1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button19"
+                android:id="@+id/field_f2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button20"
+                android:id="@+id/field_f3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button21"
+                android:id="@+id/field_f4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button22"
+                android:id="@+id/field_f5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button23"
+                android:id="@+id/field_f6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button24"
+                android:id="@+id/field_f7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button25"
+                android:id="@+id/field_f8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
@@ -216,182 +216,56 @@
             android:paddingEnd="5dp">
 
             <Button
-                android:id="@+id/button26"
+                android:id="@+id/field_e1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button27"
+                android:id="@+id/field_e2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button28"
+                android:id="@+id/field_e3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button29"
+                android:id="@+id/field_e4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button30"
+                android:id="@+id/field_e5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button31"
+                android:id="@+id/field_e6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button32"
+                android:id="@+id/field_e7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button33"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <Button
-                android:id="@+id/button34"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button35"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button36"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button37"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button38"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button39"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button40"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button41"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <Button
-                android:id="@+id/button42"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button43"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button44"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button45"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button46"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button47"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/light_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button48"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/dark_brown"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button49"
+                android:id="@+id/field_e8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
@@ -405,56 +279,56 @@
             android:paddingEnd="5dp">
 
             <Button
-                android:id="@+id/button50"
+                android:id="@+id/field_d1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button51"
+                android:id="@+id/field_d2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button52"
+                android:id="@+id/field_d3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button53"
+                android:id="@+id/field_d4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button54"
+                android:id="@+id/field_d5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button55"
+                android:id="@+id/field_d6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button56"
+                android:id="@+id/field_d7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button57"
+                android:id="@+id/field_d8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
@@ -468,56 +342,182 @@
             android:paddingEnd="5dp">
 
             <Button
-                android:id="@+id/button58"
+                android:id="@+id/field_c1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button59"
+                android:id="@+id/field_c2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button60"
+                android:id="@+id/field_c3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button61"
+                android:id="@+id/field_c4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button62"
+                android:id="@+id/field_c5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button63"
+                android:id="@+id/field_c6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button64"
+                android:id="@+id/field_c7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/dark_brown"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
-                android:id="@+id/button65"
+                android:id="@+id/field_c8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
+            <Button
+                android:id="@+id/field_b1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_b8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
+            <Button
+                android:id="@+id/field_a1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/light_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_brown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/field_a8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/light_brown"
