@@ -12,11 +12,16 @@ import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
         movementPermission = {MovementPermission.STRAIGHT_UNLIMITED}
 )
 
-public class Rook implements IEntity {
+public class Rook implements IEntity<Rook> {
 
     @Override
     public MoveResult canMove(Location location) {
         return null;
+    }
+
+    @Override
+    public Class<Rook> getEntityType() {
+        return Rook.class;
     }
 
     @Override

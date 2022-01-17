@@ -12,10 +12,15 @@ import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
         movementPermission = {MovementPermission.STRAIGHT_RESTRICTED}
 )
 
-public class Pawn implements IEntity {
+public class Pawn implements IEntity<Pawn> {
 
     @Override
     public MoveResult canMove(Location location) {
+        return null;
+    }
+
+    @Override
+    public Class<Pawn> getEntityType() {
         return null;
     }
 

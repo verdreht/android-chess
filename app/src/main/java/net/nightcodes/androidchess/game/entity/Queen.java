@@ -14,11 +14,16 @@ import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
         movementPermission = {MovementPermission.DIAGONAL_UNLIMITED, MovementPermission.STRAIGHT_UNLIMITED}
 )
 
-public class Queen implements IEntity {
+public class Queen implements IEntity<Queen> {
 
     @Override
     public MoveResult canMove(Location location) {
         return null;
+    }
+
+    @Override
+    public Class<Queen> getEntityType() {
+        return Queen.class;
     }
 
     @Override

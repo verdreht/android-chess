@@ -45,10 +45,10 @@ public class BroadcastReceiver {
         try {
             socket = new DatagramSocket(new InetSocketAddress("0.0.0.0", port));
 
-            byte[] buffer = new byte[socket.getReceiveBufferSize()];
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-
             while (running) {
+                byte[] buffer = new byte[socket.getReceiveBufferSize()];
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+
                 socket.receive(packet);
                 System.out.println("[RECEIVED] " + packet.getAddress().getHostAddress() + " -> " + new String(packet.getData(), StandardCharsets.UTF_8).trim());
 

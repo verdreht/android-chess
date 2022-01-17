@@ -3,6 +3,7 @@ package net.nightcodes.androidchess;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 //import net.nightcodes.androidchess.databinding.ActivityMainBinding;
 import net.nightcodes.androidchess.game.Board;
+import net.nightcodes.androidchess.game.entity.Knight;
+import net.nightcodes.androidchess.game.entity.Rook;
+import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
+import net.nightcodes.androidchess.game.entity.base.EntityInformation;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
@@ -38,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.launch);
         hostGame = findViewById(R.id.btn_hostGame);
         joinGame = findViewById(R.id.btn_joinGame);
-
-
+        
         try {
             board.setup();
         } catch (IllegalLocationException e) {
