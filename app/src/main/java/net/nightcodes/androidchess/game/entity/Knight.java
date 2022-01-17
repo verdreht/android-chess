@@ -16,6 +16,7 @@ public class Knight implements IEntity<Knight> {
 
     @Override
     public MoveResult canMove(Location location) {
+
         return null;
     }
 
