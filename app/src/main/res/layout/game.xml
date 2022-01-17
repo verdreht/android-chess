@@ -25,56 +25,56 @@
                 android:id="@+id/field_h1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_rook_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_knight_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_bishop_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_king_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h5"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_queen_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h6"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_bishop_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h7"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_knight_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_h8"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_rook_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </TableRow>
@@ -89,56 +89,56 @@
                 android:id="@+id/field_g1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g5"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g6"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g7"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_black_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_g8"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_black_40x40"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
@@ -405,56 +405,56 @@
                 android:id="@+id/field_b1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_b2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_b3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_b4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/field_b5"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_b6"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_b7"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_pawn_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_b8"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_pawn_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </TableRow>
 
@@ -468,56 +468,56 @@
                 android:id="@+id/field_a1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_rook_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_knight_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_bishop_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_king_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a5"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_queen_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a6"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_bishop_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a7"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/dark_brown"
+                android:background="@drawable/entity_knight_white_2_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/field_a8"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/light_brown"
+                android:background="@drawable/entity_rook_white_40x40"
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 
