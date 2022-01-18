@@ -84,6 +84,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private List<Button> fieldList = new ArrayList<>();
 
     private boolean isFirstClick = true;
+    private Button firstClickedField;
 
     private Thread serverThread;
     private BroadcastSender broadcast;
@@ -198,11 +199,17 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (isFirstClick) {
             if (view instanceof Button) {
-                //get ButtonID
-                //get Background of button
-                //set isFirstClick
+                if (isButtonExisting(view.getId(), fieldList)) {
+                    this.firstClickedField = getButtonById(view.getId());
+                    isFirstClick = false;
+                    System.out.println("1. Klick");
+                }
             }
+        } else {
 
+            
+            isFirstClick = true;
+            System.out.println("2. Klick");
         }
     }
 
@@ -213,5 +220,32 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         for (Button field : buttonList) {
             field.setOnClickListener(this);
         }
+    }
+
+    public boolean isButtonExisting(int ButtonID, List<Button> buttonList) {
+        boolean result = false;
+        for (Button button : buttonList) {
+            if (button.getId() == ButtonID) {
+                result = true;
+                break;
+            } else {
+                result = false;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @param ButtonID
+     * @return the Button which has the same ID like @param
+     */
+    public Button getButtonById(int ButtonID) {
+        Button result = null;
+        for (Button button : this.fieldList) {
+            if (button.getId() == ButtonID) {
+                result = button;
+            }
+        }
+        return result;
     }
 }

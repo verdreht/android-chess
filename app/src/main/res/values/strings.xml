@@ -17,4 +17,5 @@
     <string name="setting_cheats_enabled" />
     <string name="game_host_searching_enemy">Searching enemy...</string>
     <string name="name">Name</string>
+    <string name="test_game">Test Game</string>
 </resources>

@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     //Buttons
     private Button hostGame;
     private Button joinGame;
+    private Button testGame;
 
     private final EventManager eventManager = new EventManager();
     private final Board board = Board.getInstance(eventManager);
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.launch);
         hostGame = findViewById(R.id.btn_hostGame);
         joinGame = findViewById(R.id.btn_joinGame);
+        testGame = findViewById(R.id.btn_testGame);
         
         try {
             board.setup();
@@ -66,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         joinGame.setOnClickListener(view -> scanGames());
+
+
+
+        //TEST chess-board
+        testGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onTestGame();
+            }
+        });
     }
 
     @Override
@@ -100,4 +112,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Test chess board functionality
+    public void onTestGame() {
+        Intent intent = new Intent(this, Game.class);
+        startActivity(intent);
+    }
 }
