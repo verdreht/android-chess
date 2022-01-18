@@ -202,14 +202,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isButtonExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     isFirstClick = false;
-                    System.out.println("1. Klick");
+                    System.out.println(firstClickedField.getBackground().toString());
                 }
             }
         } else {
-
+//            Drawable pic2 = new BitmapDrawable(getResources(), firstClickedField.getBackground());
             
             isFirstClick = true;
-            System.out.println("2. Klick");
         }
     }
 
