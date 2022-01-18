@@ -177,6 +177,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 ));
         //add Buttons to List -- END
 
+        setOnClickListenerForAllFields(this.fieldList);
+
+
     }
 
     public Thread getServerThread() {
@@ -194,9 +197,21 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (isFirstClick) {
-            System.out.println(view.getBackground().toString());
+            if (view instanceof Button) {
+                //get ButtonID
+                //get Background of button
+                //set isFirstClick
+            }
+
         }
     }
 
-    //method for setting onClickListeners for all fields
+    /*
+    set OnClickListener for all fields
+     */
+    public void setOnClickListenerForAllFields(List<Button> buttonList) {
+        for (Button field : buttonList) {
+            field.setOnClickListener(this);
+        }
+    }
 }
