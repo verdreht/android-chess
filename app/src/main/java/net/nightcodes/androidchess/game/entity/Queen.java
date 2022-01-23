@@ -1,7 +1,5 @@
 package net.nightcodes.androidchess.game.entity;
 
-import androidx.annotation.NonNull;
-
 import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.logic.MoveResult;

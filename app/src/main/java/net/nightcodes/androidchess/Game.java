@@ -203,7 +203,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     System.out.println(firstClickedField.getBackground().getConstantState());
-                    Drawable.ConstantState stateA = getResources().getDrawable(R.drawable.entity_king_white_40x40).getConstantState();
+                    Drawable.ConstantState stateA = getResources().getDrawable(R.drawable.entity_bishop_white_40x40).getConstantState();
                     System.out.println(stateA);
                     if (firstClickedField.getBackground().getConstantState().equals(stateA)) {
                         System.out.println("halleluja");
@@ -254,5 +254,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             }
         }
         return result;
+    }
+
+    public void setAllImageAssets() {
+        
     }
 }

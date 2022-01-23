@@ -7,6 +7,5 @@ public interface IEntity<T> {
 
     MoveResult canMove(Location location);
     Class<T> getEntityType();
-
     String consoleIcon();
 }
