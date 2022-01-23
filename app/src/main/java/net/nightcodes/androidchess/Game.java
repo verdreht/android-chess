@@ -1,5 +1,6 @@
 package net.nightcodes.androidchess;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -199,15 +200,22 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (isFirstClick) {
             if (view instanceof Button) {
-                if (isButtonExisting(view.getId(), fieldList)) {
+                if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
+                    System.out.println(firstClickedField.getBackground().getConstantState());
+                    Drawable.ConstantState stateA = getResources().getDrawable(R.drawable.entity_king_white_40x40).getConstantState();
+                    System.out.println(stateA);
+                    if (firstClickedField.getBackground().getConstantState().equals(stateA)) {
+                        System.out.println("halleluja");
+                        firstClickedField.setBackground(getDrawable(R.drawable.entity_bishop_white_2_40x40));
+                    }
+
                     isFirstClick = false;
-                    System.out.println(firstClickedField.getBackground().toString());
                 }
             }
         } else {
-//            Drawable pic2 = new BitmapDrawable(getResources(), firstClickedField.getBackground());
-            
+
+
             isFirstClick = true;
         }
     }
@@ -221,9 +229,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public boolean isButtonExisting(int ButtonID, List<Button> buttonList) {
+    public boolean isFieldExisting(int ButtonID, List<Button> fieldList) {
         boolean result = false;
-        for (Button button : buttonList) {
+        for (Button button : fieldList) {
             if (button.getId() == ButtonID) {
                 result = true;
                 break;
