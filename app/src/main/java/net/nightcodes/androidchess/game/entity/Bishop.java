@@ -12,7 +12,7 @@ import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
         movementPermission = {MovementPermission.DIAGONAL_RESTRICTED}
 )
 
-public class Bishop extends Entity implements IEntity<Bishop> {
+public class Bishop implements IEntity<Bishop> {
 
     @Override
     public MoveResult canMove(Location location) {

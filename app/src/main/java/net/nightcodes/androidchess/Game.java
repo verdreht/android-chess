@@ -7,23 +7,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.nightcodes.androidchess.game.entity.Bishop;
-import net.nightcodes.androidchess.game.entity.Entity;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 public class Game extends AppCompatActivity implements View.OnClickListener {
-
-    Map<Entity, Set<Drawable.ConstantState>> imageAssets = new HashMap<>();
 
     //initialize fields -- START
     private Button field_a1;
@@ -217,12 +208,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     if (firstClickedField.getBackground().getConstantState().equals(stateA)) {
                         System.out.println("halleluja");
                         firstClickedField.setBackground(getDrawable(R.drawable.entity_bishop_white_2_40x40));
-                        setAllImageAssets();
-                        for (Map.Entry<Entity, Set<Drawable.ConstantState>> entry : this.imageAssets.entrySet()) {
-                            for (Drawable.ConstantState test : entry.getValue()) {
-                                System.out.println(test);
-                            }
-                        }
                     }
 
                     isFirstClick = false;
@@ -272,6 +257,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void setAllImageAssets() {
-        this.imageAssets.put(new Bishop(), new HashSet<>(Arrays.asList(getResources().getDrawable(R.drawable.entity_bishop_white_40x40).getConstantState())));
+        
     }
 }
