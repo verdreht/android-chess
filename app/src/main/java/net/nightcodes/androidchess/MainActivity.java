@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launch);
+
         hostGame = findViewById(R.id.btn_hostGame);
         joinGame = findViewById(R.id.btn_joinGame);
         testGame = findViewById(R.id.btn_testGame);

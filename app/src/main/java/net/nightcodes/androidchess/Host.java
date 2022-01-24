@@ -11,14 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.nightcodes.androidchess.server.Server;
+import net.nightcodes.androidchess.server.ServerThread;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 import net.nightcodes.androidchess.server.broadcast.BroadcastThread;
 
 public class Host extends AppCompatActivity {
 
     private static final Server server = Server.getInstance(2710);
-    private static Thread serverThread;
+    private static Thread broadcastThread;
     private static BroadcastThread serverRunnable;
+
+    private Thread serverThread;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +41,8 @@ public class Host extends AppCompatActivity {
 
                 serverRunnable = new BroadcastThread(sender, 5);
 
-                serverThread = new Thread(serverRunnable);
-                serverThread.start();
+                broadcastThread = new Thread(serverRunnable);
+                broadcastThread.start();
 
                 submitButton.setEnabled(false);
                 serverName.setEnabled(false);
@@ -50,12 +53,19 @@ public class Host extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
                 spinnerText.setVisibility(View.VISIBLE);
 
+                serverThread = new Thread(new ServerThread(server));
+                serverThread.start();
+
             } else {
                 serverName.setError("Please select a lobby name.");
             }
         });
 
 
+
+    }
+
+    public void startServer(Server server) {
 
     }
 

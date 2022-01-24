@@ -8,10 +8,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.JsonObject;
+
 import net.nightcodes.androidchess.R;
 
+import net.nightcodes.androidchess.client.Client;
+import net.nightcodes.androidchess.client.ClientHandler;
+import net.nightcodes.androidchess.client.packet.PacketType;
+import net.nightcodes.androidchess.client.packet.ServerJoinPacket;
 import net.nightcodes.androidchess.server.broadcast.objects.RemoteServer;
 
+import java.net.InetAddress;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -50,6 +60,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         TextView addressTextView = holder.addressTextView;
         addressTextView.setText(server.getAddress().getHostAddress());
 
+        Button joinButton = holder.joinButton;
+
+        joinButton.setOnClickListener(view -> new Client(server.getAddress(), server.getPort()).sendPackets(
+                    Collections.singletonList(new ServerJoinPacket().build(PacketType.SERVER_JOIN, new JsonObject()))));
+
+
     }
 
     // Returns the total count of items in the list
@@ -65,7 +81,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         // for any view that will be set as you render a row
         public TextView nameTextView;
         public TextView addressTextView;
-        public Button messageButton;
+        public Button joinButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -76,7 +92,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             nameTextView = itemView.findViewById(R.id.host_name);
             addressTextView = itemView.findViewById(R.id.host_ip);
-            messageButton = itemView.findViewById(R.id.message_button);
+            joinButton = itemView.findViewById(R.id.message_button);
         }
     }
 }
