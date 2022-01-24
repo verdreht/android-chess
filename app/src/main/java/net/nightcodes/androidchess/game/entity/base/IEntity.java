@@ -3,12 +3,9 @@ package net.nightcodes.androidchess.game.entity.base;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import net.nightcodes.androidchess.game.logic.MoveResult;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 
-import java.util.List;
 import java.util.Map;
 
 public interface IEntity<T> {

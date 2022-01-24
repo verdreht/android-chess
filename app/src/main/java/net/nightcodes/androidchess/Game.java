@@ -9,6 +9,11 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.nightcodes.androidchess.game.entity.Bishop;
+import net.nightcodes.androidchess.game.entity.King;
+import net.nightcodes.androidchess.game.entity.Knight;
+import net.nightcodes.androidchess.game.entity.Pawn;
+import net.nightcodes.androidchess.game.entity.Queen;
+import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
 import net.nightcodes.androidchess.server.Server;
@@ -187,7 +192,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 field_h1,field_h2,field_h3,field_h4,field_h5,field_h6,field_h7,field_h8
                 ));
         //add Buttons to List -- END
-
+        setAllImageAssets();
         setOnClickListenerForAllFields(this.fieldList);
 
 
@@ -215,10 +220,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     Drawable.ConstantState stateA = getResources().getDrawable(R.drawable.entity_bishop_white_40x40).getConstantState();
                     System.out.println(stateA);
                     if (firstClickedField.getBackground().getConstantState().equals(stateA)) {
+                        System.out.println("nega");
                         for (IEntity entity : imageAssets) {
                             Map<ImageAssetType, Drawable.ConstantState> fetchedAssets = entity.getDrawables();
-                            for (Map.Entry<ImageAssetType, Drawable.ConstantState> drawableAsset :fetchedAssets.entrySet()) {
-                                System.err.println(drawableAsset.getKey().toString() + ": " + drawableAsset.getValue());
+                            for (Map.Entry<ImageAssetType, Drawable.ConstantState> drawableAsset : fetchedAssets.entrySet()) {
+                                Log.i("SetDrawables", drawableAsset.getKey().toString() + ": " + drawableAsset.getValue());
                             }
                         }
                         firstClickedField.setBackground(getDrawable(R.drawable.entity_bishop_white_2_40x40));
@@ -271,6 +277,28 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void setAllImageAssets() {
-        this.imageAssets.add(new Bishop());
+        //init
+        Bishop bishop = new Bishop();
+        King king = new King();
+        Knight knight = new Knight();
+        Pawn pawn = new Pawn();
+        Queen queen = new Queen();
+        Rook rook = new Rook();
+
+        //fetching and setting all imageResources
+        bishop.setDrawables(getResources());
+        king.setDrawables(getResources());
+        knight.setDrawables(getResources());
+        pawn.setDrawables(getResources());
+        queen.setDrawables(getResources());
+        rook.setDrawables(getResources());
+
+        //add to imageAssets Set
+        this.imageAssets.add(bishop);
+        this.imageAssets.add(king);
+        this.imageAssets.add(knight);
+        this.imageAssets.add(pawn);
+        this.imageAssets.add(queen);
+        this.imageAssets.add(rook);
     }
 }
