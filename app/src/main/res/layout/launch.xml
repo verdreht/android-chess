@@ -24,13 +24,15 @@
         android:id="@+id/btn_hostGame"
         android:layout_width="160dp"
         android:layout_height="54dp"
+        android:layout_marginTop="24dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/host_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_title"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="TextContrastCheck"
+        style="@style/Widget.MaterialComponents.Button"
+        />
 
     <Button
         android:id="@+id/btn_joinGame"
@@ -46,8 +48,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="227dp"
-        android:layout_height="251dp"
+        android:layout_width="235dp"
+        android:layout_height="207dp"
         android:contentDescription="TODO"
         android:src="@drawable/springer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,12 +60,11 @@
         android:id="@+id/btn_testGame"
         android:layout_width="160dp"
         android:layout_height="54dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/test_game"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_joinGame"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_joinGame" />
 </androidx.constraintlayout.widget.ConstraintLayout>

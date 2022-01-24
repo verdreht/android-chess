@@ -74,10 +74,11 @@ public class BroadcastSender {
                 continue;
             }
 
-            networkInterface.getInterfaceAddresses().stream()
-                    .map(InterfaceAddress::getBroadcast)
-                    .filter(Objects::nonNull)
-                    .forEach(broadcastList::add);
+            for (InterfaceAddress interfaceAddress : networkInterface.getInterfaceAddresses()) {
+                if(interfaceAddress != null && interfaceAddress.getBroadcast() != null) {
+                    broadcastList.add(interfaceAddress.getBroadcast());
+                }
+            }
         }
         return broadcastList;
     }

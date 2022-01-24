@@ -19,11 +19,16 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="338dp"
+        android:layout_width="0dp"
         android:layout_height="14dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#D81515"
+        android:foregroundTint="#D81515"
         android:indeterminate="true"
         android:indeterminateTint="#D81515"
+        android:progressBackgroundTint="#D81515"
+        android:progressTint="#D81515"
+        android:secondaryProgressTint="#D81515"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -31,19 +36,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/host_list"
-        android:layout_width="0dp"
-        android:layout_height="486dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_scanning"/>
+        app:layout_constraintTop_toBottomOf="@+id/text_scanning" />
 
     <TextView
         android:id="@+id/text_scanning"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="@string/game_search"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

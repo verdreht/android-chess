@@ -2,6 +2,7 @@ package net.nightcodes.androidchess;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -206,7 +207,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     Drawable.ConstantState stateA = getResources().getDrawable(R.drawable.entity_bishop_white_40x40).getConstantState();
                     System.out.println(stateA);
                     if (firstClickedField.getBackground().getConstantState().equals(stateA)) {
-                        System.out.println("halleluja");
+                        Log.i("obama", "halleluja");
                         firstClickedField.setBackground(getDrawable(R.drawable.entity_bishop_white_2_40x40));
                     }
 

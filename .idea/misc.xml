@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/content_main.xml" value="0.4" />
+        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/host.xml" value="0.234375" />
+        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/join.xml" value="0.25" />
+        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/join_host.xml" value="0.4" />
+        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/launch.xml" value="0.4" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
