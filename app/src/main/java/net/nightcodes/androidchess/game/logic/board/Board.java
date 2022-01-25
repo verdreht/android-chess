@@ -1,4 +1,4 @@
-package net.nightcodes.androidchess.game;
+package net.nightcodes.androidchess.game.logic.board;
 
 import android.os.Build;
 

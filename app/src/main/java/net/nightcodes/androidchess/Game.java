@@ -2,7 +2,6 @@ package net.nightcodes.androidchess;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -97,9 +96,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private Button field_h8;
     //initialize fields -- END
     private List<Button> fieldList = new ArrayList<>();
+    private List<Button> whiteFields = new ArrayList<>();
+    private List<Button> blackFields = new ArrayList<>();
 
     private boolean isFirstClick = true;
+    private boolean isFirstClickedFieldWhite;
     private Button firstClickedField;
+    private Button secondClickedField;
 
     private Thread serverThread;
     private BroadcastSender broadcast;
@@ -182,15 +185,37 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
         //add Buttons to List -- START
         this.fieldList.addAll(Arrays.asList(
-                field_a1,field_a2,field_a3,field_a4,field_a5,field_a6,field_a7,field_a8,
-                field_b1,field_b2,field_b3,field_b4,field_b5,field_b6,field_b7,field_b8,
-                field_c1,field_c2,field_c3,field_c4,field_c5,field_c6,field_c7,field_c8,
-                field_d1,field_d2,field_d3,field_d4,field_d5,field_d6,field_d7,field_d8,
-                field_e1,field_e2,field_e3,field_e4,field_e5,field_e6,field_e7,field_e8,
-                field_f1,field_f2,field_f3,field_f4,field_f5,field_f6,field_f7,field_f8,
-                field_g1,field_g2,field_g3,field_g4,field_g5,field_g6,field_g7,field_g8,
-                field_h1,field_h2,field_h3,field_h4,field_h5,field_h6,field_h7,field_h8
+                field_a1, field_a2, field_a3, field_a4, field_a5, field_a6, field_a7, field_a8,
+                field_b1, field_b2, field_b3, field_b4, field_b5, field_b6, field_b7, field_b8,
+                field_c1, field_c2, field_c3, field_c4, field_c5, field_c6, field_c7, field_c8,
+                field_d1, field_d2, field_d3, field_d4, field_d5, field_d6, field_d7, field_d8,
+                field_e1, field_e2, field_e3, field_e4, field_e5, field_e6, field_e7, field_e8,
+                field_f1, field_f2, field_f3, field_f4, field_f5, field_f6, field_f7, field_f8,
+                field_g1, field_g2, field_g3, field_g4, field_g5, field_g6, field_g7, field_g8,
+                field_h1, field_h2, field_h3, field_h4, field_h5, field_h6, field_h7, field_h8
+        ));
+
+        this.blackFields.addAll(Arrays.asList(
+                field_a1, field_a3, field_a5, field_a7,
+                field_b2, field_b4, field_b6, field_b8,
+                field_c1, field_c3, field_c5, field_c7,
+                field_d2, field_d4, field_d6, field_d8,
+                field_e1, field_e3, field_e5, field_e7,
+                field_f2, field_f4, field_f6, field_f8,
+                field_g1, field_g3, field_g5, field_g7,
+                field_h2, field_h4, field_h6, field_h8
                 ));
+
+        this.whiteFields.addAll(Arrays.asList(
+                field_a2, field_a4, field_a6, field_a8,
+                field_b1, field_b3, field_b5, field_b7,
+                field_c2, field_c4, field_c6, field_c8,
+                field_d1, field_d3, field_d5, field_d7,
+                field_e2, field_e4, field_e6, field_e8,
+                field_f1, field_f3, field_f5, field_f7,
+                field_g2, field_g4, field_g6, field_g8,
+                field_h1, field_h3, field_h5, field_h7
+        ));
         //add Buttons to List -- END
         setAllImageAssets();
         setOnClickListenerForAllFields(this.fieldList);
@@ -212,31 +237,77 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (isFirstClick) {
-            if (view instanceof Button) {
+        if (view instanceof Button) {
+            if (isFirstClick) {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
-                    System.out.println(firstClickedField.getBackground().getConstantState());
-                    Drawable.ConstantState stateA = getResources().getDrawable(R.drawable.entity_bishop_white_40x40).getConstantState();
-                    System.out.println(stateA);
-                    if (firstClickedField.getBackground().getConstantState().equals(stateA)) {
-                        System.out.println("nega");
-                        for (IEntity entity : imageAssets) {
-                            Map<ImageAssetType, Drawable.ConstantState> fetchedAssets = entity.getDrawables();
-                            for (Map.Entry<ImageAssetType, Drawable.ConstantState> drawableAsset : fetchedAssets.entrySet()) {
-                                Log.i("SetDrawables", drawableAsset.getKey().toString() + ": " + drawableAsset.getValue());
-                            }
+                    if (imageCollectionContainsImageAsset(firstClickedField.getBackground())) {
+                        if (isWhiteField(firstClickedField)) {
+                            this.isFirstClickedFieldWhite = true;
                         }
-                        firstClickedField.setBackground(getDrawable(R.drawable.entity_bishop_white_2_40x40));
                     }
+
 
                     isFirstClick = false;
                 }
+
+            } else {
+                if (!isFirstClick) {
+                    this.secondClickedField = findViewById(view.getId());
+
+                    if (this.isFirstClickedFieldWhite) {
+                        if (isWhiteField(secondClickedField)) {
+                            secondClickedField.setBackground(firstClickedField.getBackground());
+                            firstClickedField.setBackground(getDrawable(R.color.light_brown));
+                            this.isFirstClickedFieldWhite = false;
+                        }
+                    }
+                }
+
+                isFirstClick = true;
             }
+        }
+    }
+
+
+    /**
+     * @param imageAsset the Asset to be checked
+     *                   checks if the imageAsset is existing in the imageAssets Collection
+     * @return true if the imageAsset is existing in imageAssets
+     */
+    public boolean imageCollectionContainsImageAsset(Drawable imageAsset) {
+        boolean result = false;
+        for (IEntity entity : this.imageAssets) {
+            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getDrawables();
+            if (entityDrawables.containsValue(imageAsset.getConstantState())) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public Drawable searchImageAssetInImageCollection(Drawable imageAsset) {
+        Drawable result = null;
+
+        for (IEntity entity : this.imageAssets) {
+            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getDrawables();
+            for (Map.Entry<ImageAssetType, Drawable.ConstantState> imageAssetEntry : entityDrawables.entrySet()) {
+                if (imageAssetEntry.getValue().equals(imageAsset.getConstantState())) {
+                    result = imageAsset;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public boolean isWhiteField(Button field) {
+        if (whiteFields.contains(field)) {
+            return true;
         } else {
-
-
-            isFirstClick = true;
+            return false;
         }
     }
 

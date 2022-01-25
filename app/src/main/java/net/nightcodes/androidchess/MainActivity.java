@@ -11,7 +11,7 @@ import android.widget.Button;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.nightcodes.androidchess.game.Board;
+import net.nightcodes.androidchess.game.logic.board.Board;
 import net.nightcodes.androidchess.game.entity.listener.EventManager;
 import net.nightcodes.androidchess.game.entity.listener.LocationChangeListenerTest;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
