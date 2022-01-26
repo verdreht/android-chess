@@ -257,6 +257,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                         this.secondClickedField = findViewById(view.getId());
                         if (imageCollectionContainsImageAsset(secondClickedField.getBackground(), imageAssets)) {
                             Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
+                            //TODO: set firstClickedField's background to the default colors of the fields
                         }
                     }
                 }
