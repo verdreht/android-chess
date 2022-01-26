@@ -13,6 +13,10 @@ public interface IEntity<T> {
     MoveResult canMove(Location location);
     Class<T> getEntityType();
     String consoleIcon();
-    void setDrawables(Resources resources);
+    void setAllDrawables(Resources resources);
+    void setWhiteDrawables(Resources resources);
+    void setBlackDrawables(Resources resources);
     Map<ImageAssetType, Drawable.ConstantState> getDrawables();
+    Map<ImageAssetType, Drawable.ConstantState> getWhiteDrawables();
+    Map<ImageAssetType, Drawable.ConstantState> getBlackDrawables();
 }

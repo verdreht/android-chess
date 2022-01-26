@@ -28,6 +28,8 @@ import java.util.Set;
 public class Game extends AppCompatActivity implements View.OnClickListener {
 
     Set<IEntity> imageAssets = new HashSet<>();
+    Set<IEntity> blackImageAssets = new HashSet<>();
+    Set<IEntity> whiteImageAssets = new HashSet<>();
 
     //initialize fields -- START
     private Button field_a1;
@@ -242,7 +244,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground())) {
-                        System.out.println(getEntityTypeFromDrawable(firstClickedField.getBackground()).getEntityType().toString());
                         if (isWhiteField(firstClickedField)) {
                             this.isFirstClickedFieldWhite = true;
                         }
@@ -267,6 +268,10 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 isFirstClick = true;
             }
         }
+    }
+
+    public Drawable getAppropriateEntityDrawableForMove(Drawable entityDrawable, boolean isNextFieldWhite) {
+
     }
 
     public IEntity getEntityTypeFromDrawable(Drawable entityDrawable) {
@@ -372,12 +377,12 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         Rook rook = new Rook();
 
         //fetching and setting all imageResources
-        bishop.setDrawables(getResources());
-        king.setDrawables(getResources());
-        knight.setDrawables(getResources());
-        pawn.setDrawables(getResources());
-        queen.setDrawables(getResources());
-        rook.setDrawables(getResources());
+        bishop.setAllDrawables(getResources());
+        king.setAllDrawables(getResources());
+        knight.setAllDrawables(getResources());
+        pawn.setAllDrawables(getResources());
+        queen.setAllDrawables(getResources());
+        rook.setAllDrawables(getResources());
 
         //add to imageAssets Set
         this.imageAssets.add(bishop);

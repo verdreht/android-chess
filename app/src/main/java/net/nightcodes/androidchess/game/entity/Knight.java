@@ -22,6 +22,8 @@ import java.util.Map;
 
 public class Knight implements IEntity<Knight> {
     private Map<ImageAssetType, Drawable.ConstantState> drawables = new HashMap<>();
+    private Map<ImageAssetType, Drawable.ConstantState> whiteDrawables = new HashMap<>();
+    private Map<ImageAssetType, Drawable.ConstantState> blackDrawables = new HashMap<>();
 
     @Override
     public MoveResult canMove(Location location) {
@@ -40,7 +42,7 @@ public class Knight implements IEntity<Knight> {
     }
 
     @Override
-    public void setDrawables(Resources resources) {
+    public void setAllDrawables(Resources resources) {
         drawables.put(ImageAssetType.WHITE_BRIGHT, resources.getDrawable(R.drawable.entity_knight_white_40x40).getConstantState());
         drawables.put(ImageAssetType.WHITE_DARK, resources.getDrawable(R.drawable.entity_knight_white_2_40x40).getConstantState());
         drawables.put(ImageAssetType.BLACK_BRIGHT, resources.getDrawable(R.drawable.entity_knight_black_40x40).getConstantState());
@@ -48,7 +50,29 @@ public class Knight implements IEntity<Knight> {
     }
 
     @Override
+    public void setWhiteDrawables(Resources resources) {
+        whiteDrawables.put(ImageAssetType.WHITE_BRIGHT, resources.getDrawable(R.drawable.entity_knight_white_40x40).getConstantState());
+        whiteDrawables.put(ImageAssetType.WHITE_DARK, resources.getDrawable(R.drawable.entity_knight_white_2_40x40).getConstantState());
+    }
+
+    @Override
+    public void setBlackDrawables(Resources resources) {
+        blackDrawables.put(ImageAssetType.BLACK_BRIGHT, resources.getDrawable(R.drawable.entity_knight_black_40x40).getConstantState());
+        blackDrawables.put(ImageAssetType.BLACK_DARK, resources.getDrawable(R.drawable.entity_knight_black_2_40x40).getConstantState());
+    }
+
+    @Override
     public Map<ImageAssetType, Drawable.ConstantState> getDrawables() {
         return this.drawables;
+    }
+
+    @Override
+    public Map<ImageAssetType, Drawable.ConstantState> getWhiteDrawables() {
+        return whiteDrawables;
+    }
+
+    @Override
+    public Map<ImageAssetType, Drawable.ConstantState> getBlackDrawables() {
+        return blackDrawables;
     }
 }
