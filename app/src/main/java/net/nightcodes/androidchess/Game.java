@@ -243,7 +243,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             if (isFirstClick) {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
-                    if (imageCollectionContainsImageAsset(firstClickedField.getBackground())) {
+                    if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
                         if (isWhiteField(firstClickedField)) {
                             this.isFirstClickedFieldWhite = true;
                         }
@@ -270,14 +270,84 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public Drawable getAppropriateEntityDrawableForMove(Drawable entityDrawable, boolean isNextFieldWhite) {
-        return null;
+    public Drawable findEntityDrawableForCurrentMove(Drawable entityDrawable) {
+        Drawable result = null;
+        IEntity entityType = null;
+
+        if (entityDrawable == null) return result;
+
+        entityType = getEntityTypeFromDrawable(entityDrawable, imageAssets);
+        if (secondClickedField != null) {
+            if ((isWhiteField(firstClickedField)) &&
+                    (isWhiteField(secondClickedField)))
+            {
+                //Entity moves onto another white field (same background)
+                result = entityDrawable;
+            } else if ((!isWhiteField(firstClickedField)) &&
+                    (!isWhiteField(secondClickedField)))
+            {
+                //Entity moves onto another black field (same background)
+                result = entityDrawable;
+            } else if ((isWhiteField(firstClickedField)) &&
+                    (!isWhiteField(secondClickedField)) &&
+                    (isEntityWhite(entityDrawable)))
+            {
+                //White Entity moves from a white field to a black field
+                result = findImageAsset(entityType, ImageAssetType.WHITE_DARK, imageAssets);
+            } else if ((!isWhiteField(firstClickedField)) &&
+                    (isWhiteField(secondClickedField)) &&
+                    (isEntityWhite(entityDrawable)))
+            {
+                //White Entity moves from a black field to a white field
+                result = findImageAsset(entityType, ImageAssetType.WHITE_BRIGHT, imageAssets);
+            } else if ((isWhiteField(firstClickedField)) &&
+                    (!isWhiteField(secondClickedField)) &&
+                    (!isEntityWhite(entityDrawable)))
+            {
+                //Black Entity moves from a white field to a black field
+                result = findImageAsset(entityType, ImageAssetType.BLACK_DARK, imageAssets);
+            } else if ((!isWhiteField(firstClickedField)) &&
+                    (isWhiteField(secondClickedField)) &&
+                    (!isEntityWhite(entityDrawable)))
+            {
+                //Black Entity moves from a black field to a white field
+                result = findImageAsset(entityType, ImageAssetType.BLACK_BRIGHT, imageAssets);
+            }
+        }
+
+
+        return result;
     }
 
-    public IEntity getEntityTypeFromDrawable(Drawable entityDrawable) {
+    public Drawable findImageAsset(IEntity entityType, ImageAssetType assetType, Set<IEntity> entitySet) {
+        Drawable result = null;
+        for (IEntity entity : entitySet) {
+            if (entity.getEntityType().equals(entityType.getEntityType())) {
+                Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
+                for (Map.Entry<ImageAssetType, Drawable.ConstantState> entityEntry : entityDrawables.entrySet()) {
+                    if (entityEntry.getKey().equals(assetType)) {
+                        result = entityEntry.getValue().newDrawable();
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    public Boolean isEntityWhite(Drawable entityDrawable) {
+        if (imageCollectionContainsImageAsset(entityDrawable, whiteImageAssets)) {
+            return true;
+        } else if (imageCollectionContainsImageAsset(entityDrawable, blackImageAssets)) {
+            return false;
+        } else {
+            return null;
+        }
+    }
+
+    public IEntity getEntityTypeFromDrawable(Drawable entityDrawable, Set<IEntity> imageCollection) {
         IEntity result = null;
 
-        for (IEntity entityType : imageAssets) {
+        for (IEntity entityType : imageCollection) {
             Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entityType.getAllDrawables();
             for (Map.Entry<ImageAssetType, Drawable.ConstantState> entityEntry : entityDrawables.entrySet()) {
                 if (entityDrawable.getConstantState().equals(entityEntry.getValue())) {
@@ -295,9 +365,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
      *                   checks if the imageAsset is existing in the imageAssets Collection
      * @return true if the imageAsset is existing in imageAssets
      */
-    public boolean imageCollectionContainsImageAsset(Drawable imageAsset) {
+    public boolean imageCollectionContainsImageAsset(Drawable imageAsset, Set<IEntity> imageCollection) {
         boolean result = false;
-        for (IEntity entity : this.imageAssets) {
+        for (IEntity entity : imageCollection) {
             Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
             if (entityDrawables.containsValue(imageAsset.getConstantState())) {
                 result = true;
