@@ -254,12 +254,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             } else {
                 if (!isFirstClick) {
                     this.secondClickedField = findViewById(view.getId());
-
-                    if (this.isFirstClickedFieldWhite) {
-                        if (isWhiteField(secondClickedField)) {
-                            secondClickedField.setBackground(firstClickedField.getBackground());
-                            firstClickedField.setBackground(getDrawable(R.color.light_brown));
-                            this.isFirstClickedFieldWhite = false;
+                    if (isFieldExisting(view.getId(), fieldList)) {
+                        if (this.isFirstClickedFieldWhite) {
+                            if (isWhiteField(secondClickedField)) {
+                                this.isFirstClickedFieldWhite = false;
+                            }
                         }
                     }
                 }
@@ -267,6 +266,21 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 isFirstClick = true;
             }
         }
+    }
+
+    public IEntity getEntityTypeFromDrawable(Drawable entityDrawable, boolean nextFieldIsWhite) {
+        IEntity result = null;
+
+        for (IEntity entityType : imageAssets) {
+            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entityType.getDrawables();
+            for (Map.Entry<ImageAssetType, Drawable.ConstantState> entityEntry : entityDrawables.entrySet()) {
+                if (entityDrawable.getConstantState().equals(entityEntry.getValue())) {
+                    result = entityType;
+                }
+            }
+        }
+
+        return result;
     }
 
 
@@ -294,7 +308,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getDrawables();
             for (Map.Entry<ImageAssetType, Drawable.ConstantState> imageAssetEntry : entityDrawables.entrySet()) {
                 if (imageAssetEntry.getValue().equals(imageAsset.getConstantState())) {
-                    result = imageAsset;
+                    result = imageAssetEntry.getValue().newDrawable();
                     break;
                 }
             }
