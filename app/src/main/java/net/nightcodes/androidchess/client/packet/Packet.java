@@ -2,6 +2,9 @@ package net.nightcodes.androidchess.client.packet;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.nio.charset.StandardCharsets;
 
 public class Packet {
 
@@ -32,5 +35,16 @@ public class Packet {
         data.add("body", jsonElement);
 
         return data.toString().getBytes();
+    }
+
+    public static Packet fromData(byte[] byteSequence) {
+        String content = new String(byteSequence, StandardCharsets.UTF_8).trim();
+        JsonElement parsedJson = JsonParser.parseString(content);
+
+        PacketType packetType = PacketType.valueOf(parsedJson.getAsJsonObject().get("header").getAsJsonObject().get("request_type").getAsString());
+        JsonObject body = parsedJson.getAsJsonObject().get("body").getAsJsonObject();
+
+        return new Packet(packetType, body);
+
     }
 }
