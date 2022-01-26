@@ -61,7 +61,7 @@ public class Queen implements IEntity<Queen> {
     }
 
     @Override
-    public Map<ImageAssetType, Drawable.ConstantState> getDrawables() {
+    public Map<ImageAssetType, Drawable.ConstantState> getAllDrawables() {
         return this.drawables;
     }
 

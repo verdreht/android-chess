@@ -64,7 +64,7 @@ public class Bishop implements IEntity<Bishop> {
     }
 
     @Override
-    public Map<ImageAssetType, Drawable.ConstantState> getDrawables() {
+    public Map<ImageAssetType, Drawable.ConstantState> getAllDrawables() {
         return this.drawables;
     }
 

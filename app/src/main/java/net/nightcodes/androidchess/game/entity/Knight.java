@@ -62,7 +62,7 @@ public class Knight implements IEntity<Knight> {
     }
 
     @Override
-    public Map<ImageAssetType, Drawable.ConstantState> getDrawables() {
+    public Map<ImageAssetType, Drawable.ConstantState> getAllDrawables() {
         return this.drawables;
     }
 

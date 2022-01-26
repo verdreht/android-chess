@@ -271,14 +271,14 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     }
 
     public Drawable getAppropriateEntityDrawableForMove(Drawable entityDrawable, boolean isNextFieldWhite) {
-
+        return null;
     }
 
     public IEntity getEntityTypeFromDrawable(Drawable entityDrawable) {
         IEntity result = null;
 
         for (IEntity entityType : imageAssets) {
-            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entityType.getDrawables();
+            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entityType.getAllDrawables();
             for (Map.Entry<ImageAssetType, Drawable.ConstantState> entityEntry : entityDrawables.entrySet()) {
                 if (entityDrawable.getConstantState().equals(entityEntry.getValue())) {
                     result = entityType;
@@ -298,7 +298,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     public boolean imageCollectionContainsImageAsset(Drawable imageAsset) {
         boolean result = false;
         for (IEntity entity : this.imageAssets) {
-            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getDrawables();
+            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
             if (entityDrawables.containsValue(imageAsset.getConstantState())) {
                 result = true;
                 break;
@@ -311,7 +311,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         Drawable result = null;
 
         for (IEntity entity : this.imageAssets) {
-            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getDrawables();
+            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
             for (Map.Entry<ImageAssetType, Drawable.ConstantState> imageAssetEntry : entityDrawables.entrySet()) {
                 if (imageAssetEntry.getValue().equals(imageAsset.getConstantState())) {
                     result = imageAssetEntry.getValue().newDrawable();
@@ -384,6 +384,20 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         queen.setAllDrawables(getResources());
         rook.setAllDrawables(getResources());
 
+        bishop.setWhiteDrawables(getResources());
+        king.setWhiteDrawables(getResources());
+        knight.setWhiteDrawables(getResources());
+        pawn.setWhiteDrawables(getResources());
+        queen.setWhiteDrawables(getResources());
+        rook.setWhiteDrawables(getResources());
+
+        bishop.setBlackDrawables(getResources());
+        king.setBlackDrawables(getResources());
+        knight.setBlackDrawables(getResources());
+        pawn.setBlackDrawables(getResources());
+        queen.setBlackDrawables(getResources());
+        rook.setBlackDrawables(getResources());
+
         //add to imageAssets Set
         this.imageAssets.add(bishop);
         this.imageAssets.add(king);
@@ -391,5 +405,19 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         this.imageAssets.add(pawn);
         this.imageAssets.add(queen);
         this.imageAssets.add(rook);
+
+        this.whiteImageAssets.add(bishop);
+        this.whiteImageAssets.add(king);
+        this.whiteImageAssets.add(knight);
+        this.whiteImageAssets.add(pawn);
+        this.whiteImageAssets.add(queen);
+        this.whiteImageAssets.add(rook);
+
+        this.blackImageAssets.add(bishop);
+        this.blackImageAssets.add(king);
+        this.blackImageAssets.add(knight);
+        this.blackImageAssets.add(pawn);
+        this.blackImageAssets.add(queen);
+        this.blackImageAssets.add(rook);
     }
 }

@@ -61,7 +61,7 @@ public class Pawn implements IEntity<Pawn> {
     }
 
     @Override
-    public Map<ImageAssetType, Drawable.ConstantState> getDrawables() {
+    public Map<ImageAssetType, Drawable.ConstantState> getAllDrawables() {
         return this.drawables;
     }
 

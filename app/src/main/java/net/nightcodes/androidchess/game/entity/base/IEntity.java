@@ -16,7 +16,7 @@ public interface IEntity<T> {
     void setAllDrawables(Resources resources);
     void setWhiteDrawables(Resources resources);
     void setBlackDrawables(Resources resources);
-    Map<ImageAssetType, Drawable.ConstantState> getDrawables();
+    Map<ImageAssetType, Drawable.ConstantState> getAllDrawables();
     Map<ImageAssetType, Drawable.ConstantState> getWhiteDrawables();
     Map<ImageAssetType, Drawable.ConstantState> getBlackDrawables();
 }
