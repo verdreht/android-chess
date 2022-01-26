@@ -244,9 +244,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
-                        if (isWhiteField(firstClickedField)) {
-                            this.isFirstClickedFieldWhite = true;
-                        }
+
                     }
 
 
@@ -255,13 +253,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
             } else {
                 if (!isFirstClick) {
-                    this.secondClickedField = findViewById(view.getId());
                     if (isFieldExisting(view.getId(), fieldList)) {
-                        if (this.isFirstClickedFieldWhite) {
-                            if (isWhiteField(secondClickedField)) {
-                                this.isFirstClickedFieldWhite = false;
-                            }
-                        }
+                        this.secondClickedField = findViewById(view.getId());
                     }
                 }
 
@@ -377,6 +370,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
+    /*
     public Drawable searchImageAssetInImageCollection(Drawable imageAsset) {
         Drawable result = null;
 
@@ -392,6 +386,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
         return result;
     }
+    */
 
     public boolean isWhiteField(Button field) {
         if (whiteFields.contains(field)) {
