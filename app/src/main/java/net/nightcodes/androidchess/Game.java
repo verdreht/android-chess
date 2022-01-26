@@ -242,6 +242,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground())) {
+                        System.out.println(getEntityTypeFromDrawable(firstClickedField.getBackground()).getEntityType().toString());
                         if (isWhiteField(firstClickedField)) {
                             this.isFirstClickedFieldWhite = true;
                         }
@@ -268,7 +269,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public IEntity getEntityTypeFromDrawable(Drawable entityDrawable, boolean nextFieldIsWhite) {
+    public IEntity getEntityTypeFromDrawable(Drawable entityDrawable) {
         IEntity result = null;
 
         for (IEntity entityType : imageAssets) {

@@ -30,7 +30,7 @@ public class Pawn implements IEntity<Pawn> {
 
     @Override
     public Class<Pawn> getEntityType() {
-        return null;
+        return Pawn.class;
     }
 
     @Override
