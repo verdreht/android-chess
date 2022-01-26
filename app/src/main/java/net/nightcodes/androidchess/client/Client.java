@@ -1,5 +1,8 @@
 package net.nightcodes.androidchess.client;
 
+import android.accounts.NetworkErrorException;
+import android.util.Log;
+
 import net.nightcodes.androidchess.client.packet.Packet;
 
 import org.snf4j.core.SelectorLoop;
@@ -35,8 +38,11 @@ public class Client {
 
                 if (session.isOpen()) {
                     for(Packet packet : packetList) {
+                        Log.e("balls?", packet.getJsonElement().toString());
                         session.write((packet.toData()));
                     }
+                } else {
+                    throw new NetworkErrorException();
                 }
 
             } catch(Exception ex) {

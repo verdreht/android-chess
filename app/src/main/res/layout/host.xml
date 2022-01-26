@@ -85,28 +85,52 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/app_default"
         android:foregroundTint="@color/app_default"
         android:indeterminateTint="@color/app_default"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serverName" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loader_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/ubuntu_light"
         android:text="@string/game_host_searching_enemy"
         android:textSize="16sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loader" />
+
+    <LinearLayout
+        android:id="@+id/logger"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="35sp"
+        android:background="#3E3E3E"
+        android:backgroundTint="#3E3E3E"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btn_lobby_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serverName">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu_light"
+            android:foregroundTint="#FFFFFF"
+            android:padding="5sp"
+            android:text="@string/logger"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:drawableTint="#FFFFFF" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

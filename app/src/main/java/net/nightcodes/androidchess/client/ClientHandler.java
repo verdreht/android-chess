@@ -20,8 +20,7 @@ public class ClientHandler extends AbstractStreamHandler {
     public void event(SessionEvent event) {
         switch (event) {
             case READY:
-                getSession().write("Hello, World!".getBytes());
-                getSession().close();
+                getSession().write("Hello, World!");
                 break;
             case CLOSED:
 

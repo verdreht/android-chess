@@ -1,6 +1,7 @@
 package net.nightcodes.androidchess.ui.networkscan.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +63,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         Button joinButton = holder.joinButton;
 
-        joinButton.setOnClickListener(view -> new Client(server.getAddress(), server.getPort()).sendPackets(
-                    Collections.singletonList(new ServerJoinPacket().build(PacketType.SERVER_JOIN, new JsonObject()))));
+        joinButton.setOnClickListener(view -> {new Client(server.getAddress(), server.getPort()).sendPackets(
+                    Collections.singletonList(new ServerJoinPacket().build()));
+            Log.e("balls", server.getName() + ", " + server.getAddress() + ":" + server.getPort());});
 
 
     }
