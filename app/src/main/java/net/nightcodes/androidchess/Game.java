@@ -101,8 +101,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private List<Button> whiteFields = new ArrayList<>();
     private List<Button> blackFields = new ArrayList<>();
 
+    //setting default fields
+    private Drawable defaultFieldWhite = getResources().getDrawable(R.color.light_brown);
+    private Drawable defaultFieldBlack = getResources().getDrawable(R.color.dark_brown);
+
     private boolean isFirstClick = true;
-    private boolean isFirstClickedFieldWhite;
     private Button firstClickedField;
     private Button secondClickedField;
 
@@ -244,17 +247,17 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isFieldExisting(view.getId(), fieldList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
-
+                        isFirstClick = false;
                     }
-
-
-                    isFirstClick = false;
                 }
 
             } else {
                 if (!isFirstClick) {
                     if (isFieldExisting(view.getId(), fieldList)) {
                         this.secondClickedField = findViewById(view.getId());
+                        if (imageCollectionContainsImageAsset(secondClickedField.getBackground(), imageAssets)) {
+                            Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
+                        }
                     }
                 }
 
