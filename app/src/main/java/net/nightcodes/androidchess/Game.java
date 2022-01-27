@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import net.nightcodes.androidchess.game.entity.Bishop;
 import net.nightcodes.androidchess.game.entity.King;
@@ -101,9 +102,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private List<Button> whiteFields = new ArrayList<>();
     private List<Button> blackFields = new ArrayList<>();
 
-    //setting default fields
-    private Drawable defaultFieldWhite = getResources().getDrawable(R.color.light_brown);
-    private Drawable defaultFieldBlack = getResources().getDrawable(R.color.dark_brown);
+    private Drawable defaultFieldWhite;
+    private Drawable defaultFieldBlack;
 
     private boolean isFirstClick = true;
     private Button firstClickedField;
@@ -119,6 +119,10 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
+
+        //setting default fields
+        defaultFieldWhite = AppCompatResources.getDrawable(getApplicationContext(), R.drawable.entity_null_white);
+        defaultFieldBlack = AppCompatResources.getDrawable(getApplicationContext(), R.drawable.entity_null_black);
         //instancing board!!
 
         //set button IDs -- START
@@ -209,7 +213,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 field_f2, field_f4, field_f6, field_f8,
                 field_g1, field_g3, field_g5, field_g7,
                 field_h2, field_h4, field_h6, field_h8
-                ));
+        ));
 
         this.whiteFields.addAll(Arrays.asList(
                 field_a2, field_a4, field_a6, field_a8,
@@ -255,14 +259,15 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (!isFirstClick) {
                     if (isFieldExisting(view.getId(), fieldList)) {
                         this.secondClickedField = findViewById(view.getId());
-                        if (imageCollectionContainsImageAsset(secondClickedField.getBackground(), imageAssets)) {
-                            Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
-                            //TODO: set firstClickedField's background to the default colors of the fields
-                        }
+                        Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
+                        firstClickedField.setBackground(setFieldAfterMove());
+                        secondClickedField.setBackground(newEntityIcon);
+
+                        //resetting clickValue to make next move
+                        isFirstClick = true;
+                        //TODO: lock player's move-function when it's not his turn!!!
                     }
                 }
-
-                isFirstClick = true;
             }
         }
     }
@@ -276,44 +281,44 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         entityType = getEntityTypeFromDrawable(entityDrawable, imageAssets);
         if (secondClickedField != null) {
             if ((isWhiteField(firstClickedField)) &&
-                    (isWhiteField(secondClickedField)))
-            {
+                    (isWhiteField(secondClickedField))) {
                 //Entity moves onto another white field (same background)
                 result = entityDrawable;
             } else if ((!isWhiteField(firstClickedField)) &&
-                    (!isWhiteField(secondClickedField)))
-            {
+                    (!isWhiteField(secondClickedField))) {
                 //Entity moves onto another black field (same background)
                 result = entityDrawable;
             } else if ((isWhiteField(firstClickedField)) &&
                     (!isWhiteField(secondClickedField)) &&
-                    (isEntityWhite(entityDrawable)))
-            {
+                    (isEntityWhite(entityDrawable))) {
                 //White Entity moves from a white field to a black field
                 result = findImageAsset(entityType, ImageAssetType.WHITE_DARK, imageAssets);
             } else if ((!isWhiteField(firstClickedField)) &&
                     (isWhiteField(secondClickedField)) &&
-                    (isEntityWhite(entityDrawable)))
-            {
+                    (isEntityWhite(entityDrawable))) {
                 //White Entity moves from a black field to a white field
                 result = findImageAsset(entityType, ImageAssetType.WHITE_BRIGHT, imageAssets);
             } else if ((isWhiteField(firstClickedField)) &&
                     (!isWhiteField(secondClickedField)) &&
-                    (!isEntityWhite(entityDrawable)))
-            {
+                    (!isEntityWhite(entityDrawable))) {
                 //Black Entity moves from a white field to a black field
                 result = findImageAsset(entityType, ImageAssetType.BLACK_DARK, imageAssets);
             } else if ((!isWhiteField(firstClickedField)) &&
                     (isWhiteField(secondClickedField)) &&
-                    (!isEntityWhite(entityDrawable)))
-            {
+                    (!isEntityWhite(entityDrawable))) {
                 //Black Entity moves from a black field to a white field
                 result = findImageAsset(entityType, ImageAssetType.BLACK_BRIGHT, imageAssets);
             }
         }
-
-
         return result;
+    }
+
+    public Drawable setFieldAfterMove() {
+        if (isWhiteField(firstClickedField)) {
+            return defaultFieldWhite;
+        } else {
+            return defaultFieldBlack;
+        }
     }
 
     public Drawable findImageAsset(IEntity entityType, ImageAssetType assetType, Set<IEntity> entitySet) {
