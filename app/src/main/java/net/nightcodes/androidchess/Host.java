@@ -1,9 +1,11 @@
 package net.nightcodes.androidchess;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -53,7 +55,7 @@ public class Host extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
                 spinnerText.setVisibility(View.VISIBLE);
 
-                serverThread = new Thread(new ServerThread(server));
+                serverThread = new Thread(new ServerThread(this, server));
                 serverThread.start();
 
             } else {
@@ -67,6 +69,18 @@ public class Host extends AppCompatActivity {
 
     public void startServer(Server server) {
 
+    }
+
+    public void addLogEntry(String log) {
+        runOnUiThread(() -> {
+            LinearLayout linearLayout = findViewById(R.id.logger);
+            TextView logEntry = new TextView(this);
+            logEntry.setText(log);
+            logEntry.setTextColor(Color.WHITE);
+            logEntry.setTextSize(16);
+            logEntry.setPadding(10, 10,0,0);
+            linearLayout.addView(logEntry);
+        });
     }
 
     @Override

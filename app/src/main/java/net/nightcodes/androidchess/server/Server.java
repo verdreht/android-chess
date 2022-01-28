@@ -2,6 +2,7 @@ package net.nightcodes.androidchess.server;
 
 import android.util.Log;
 
+import net.nightcodes.androidchess.Host;
 import net.nightcodes.androidchess.utils.Utils;
 
 import org.snf4j.core.SelectorLoop;
@@ -17,6 +18,7 @@ public class Server {
 
     private final int port;
     private String serverName;
+    private Host host;
 
     private Server(int port) {
         this.port = port;
@@ -27,7 +29,8 @@ public class Server {
     }
 
     public void start() throws IOException, InterruptedException {
-        Log.d("SERVER", "SERVER INITIALIZED >> " + Utils.getIPAddress(true) + ":" + port);
+        host.addLogEntry("[SERVER] Lobby has been created! >> " + serverName);
+        host.addLogEntry("[SERVER] Initialized server! >> " + Utils.getIPAddress(true) + ":" + port);
 
         SelectorLoop loop = new SelectorLoop();
         loop.start();
@@ -39,7 +42,7 @@ public class Server {
         loop.register(channel, new AbstractSessionFactory() {
             @Override
             protected IStreamHandler createHandler(SocketChannel channel) {
-                return new ServerHandler();
+                return new ServerHandler(host);
             }
         });
 
@@ -57,5 +60,13 @@ public class Server {
 
     public int getPort() {
         return port;
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
     }
 }
