@@ -379,24 +379,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    /*
-    public Drawable searchImageAssetInImageCollection(Drawable imageAsset) {
-        Drawable result = null;
-
-        for (IEntity entity : this.imageAssets) {
-            Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
-            for (Map.Entry<ImageAssetType, Drawable.ConstantState> imageAssetEntry : entityDrawables.entrySet()) {
-                if (imageAssetEntry.getValue().equals(imageAsset.getConstantState())) {
-                    result = imageAssetEntry.getValue().newDrawable();
-                    break;
-                }
-            }
-        }
-
-        return result;
-    }
-    */
-
     public boolean isWhiteField(Button field) {
         if (whiteFields.contains(field)) {
             return true;
