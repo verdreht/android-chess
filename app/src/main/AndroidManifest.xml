@@ -17,7 +17,7 @@
             android:name=".Game"
             android:exported="false" />
         <activity
-            android:name=".ui.networkscan.Join"
+            android:name=".Join"
             android:exported="false" />
         <activity
             android:name=".Host"

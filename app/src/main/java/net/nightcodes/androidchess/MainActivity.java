@@ -15,7 +15,6 @@ import net.nightcodes.androidchess.game.logic.board.Board;
 import net.nightcodes.androidchess.game.entity.listener.EventManager;
 import net.nightcodes.androidchess.game.entity.listener.LocationChangeListenerTest;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
-import net.nightcodes.androidchess.ui.networkscan.Join;
 
 import java.util.concurrent.TimeUnit;
 

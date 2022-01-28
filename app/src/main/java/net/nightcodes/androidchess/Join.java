@@ -1,4 +1,4 @@
-package net.nightcodes.androidchess.ui.networkscan;
+package net.nightcodes.androidchess;
 
 import android.os.Bundle;
 
@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.nightcodes.androidchess.R;
 import net.nightcodes.androidchess.server.broadcast.BroadcastReceiver;
+import net.nightcodes.androidchess.ui.networkscan.AdapterManager;
 import net.nightcodes.androidchess.ui.networkscan.view.ItemAdapter;
 
 import java.util.concurrent.TimeUnit;
