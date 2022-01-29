@@ -1,6 +1,7 @@
 package net.nightcodes.androidchess.ui.networkscan.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,18 +11,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.JsonObject;
-
+import net.nightcodes.androidchess.Game;
 import net.nightcodes.androidchess.R;
-
 import net.nightcodes.androidchess.client.Client;
-import net.nightcodes.androidchess.client.ClientHandler;
-import net.nightcodes.androidchess.client.packet.PacketType;
 import net.nightcodes.androidchess.client.packet.ServerJoinPacket;
 import net.nightcodes.androidchess.server.broadcast.objects.RemoteServer;
 
-import java.net.InetAddress;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,6 +24,8 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private List<RemoteServer> remoteServers;
+    private RemoteServer remoteServer;
+    private Client client;
 
     // Pass in the contact array into the constructor
     public ItemAdapter(List<RemoteServer> remoteServers) {
@@ -52,22 +49,37 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
         // Get the data model based on position
-        RemoteServer server = remoteServers.get(position);
+        remoteServer = remoteServers.get(position);
 
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
-        textView.setText(server.getName());
+        textView.setText(remoteServer.getName());
 
         TextView addressTextView = holder.addressTextView;
-        addressTextView.setText(server.getAddress().getHostAddress());
+        addressTextView.setText(remoteServer.getAddress().getHostAddress());
 
         Button joinButton = holder.joinButton;
 
-        joinButton.setOnClickListener(view -> {new Client(server.getAddress(), server.getPort()).sendPackets(
-                    Collections.singletonList(new ServerJoinPacket().build()));
-            Log.e("balls", server.getName() + ", " + server.getAddress() + ":" + server.getPort());});
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startClient();
+                startGame(joinButton.getContext());
+            }
+        });
 
 
+    }
+
+    private void startGame(Context context) {
+        Intent startGame = new Intent(context, Game.class);
+        context.startActivity(startGame);
+    }
+
+    private void startClient() {
+        this.client = new Client(remoteServer.getAddress(), remoteServer.getPort()).sendPackets(
+                Collections.singletonList(new ServerJoinPacket().build()));
+            Log.e("balls", remoteServer.getName() + ", " + remoteServer.getAddress() + ":" + remoteServer.getPort());
     }
 
     // Returns the total count of items in the list
@@ -94,7 +106,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             nameTextView = itemView.findViewById(R.id.host_name);
             addressTextView = itemView.findViewById(R.id.host_ip);
-            joinButton = itemView.findViewById(R.id.message_button);
+            joinButton = itemView.findViewById(R.id.btn_joinHost);
         }
     }
 }

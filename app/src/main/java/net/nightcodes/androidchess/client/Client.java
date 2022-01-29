@@ -36,13 +36,18 @@ public class Client {
 
                 IStreamSession session = (IStreamSession) loop.register(channel, new ClientHandler()).sync().getSession();
 
-                if (session.isOpen()) {
-                    for(Packet packet : packetList) {
-                        Log.e("balls?", packet.getJsonElement().toString());
-                        session.write((packet.toData()));
+                try {
+                    if (session.isOpen()) {
+                        for (Packet packet : packetList) {
+                            Log.e("hansi", packet.getJsonElement().toString());
+                            System.out.println("WARUM IS DA SEGA A NEGA");
+                            session.write((packet.toData()));
+                        }
+                    } else {
+                        throw new NetworkErrorException();
                     }
-                } else {
-                    throw new NetworkErrorException();
+                } catch (NetworkErrorException ex) {
+                    Log.e("NetworkError", "FATAL Client-Server Error", ex);
                 }
 
             } catch(Exception ex) {

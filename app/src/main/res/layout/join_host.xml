@@ -42,7 +42,7 @@
 
 
     <Button
-        android:id="@+id/message_button"
+        android:id="@+id/btn_joinHost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

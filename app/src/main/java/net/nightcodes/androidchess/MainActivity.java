@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button hostGame;
     private Button joinGame;
     private Button testGame;
+    private Button joinHostButton;
 
     private final EventManager eventManager = new EventManager();
     private final Board board = Board.getInstance(eventManager);
@@ -68,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         joinGame.setOnClickListener(view -> scanGames());
-
-
 
         //TEST chess-board
         testGame.setOnClickListener(new View.OnClickListener() {

@@ -3,18 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/content_main.xml" value="0.4" />
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/game.xml" value="0.24615384615384617" />
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/host.xml" value="0.4" />
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/join.xml" value="0.25" />
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/join_host.xml" value="0.4" />
-        <entry key="..\:/Users/Huawei/Documents/GitHub/android-chess/app/src/main/res/layout/launch.xml" value="0.4" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/fragment_first.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/game.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/host.xml" value="0.16927083333333334" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/join.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/join_host.xml" value="0.2418478260869565" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/launch.xml" value="0.18888888888888888" />
@@ -25,6 +19,10 @@
         <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/fragment_first.xml" value="0.24615384615384617" />
         <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/fragment_second.xml" value="0.24615384615384617" />
         <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/game.xml" value="0.24537037037037038" />
+        <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/host.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/join.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/join_host.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/launch.xml" value="0.12708333333333333" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.30104166666666665" />
         <entry key="app/src/main/res/drawable/box_shadow.xml" value="0.30104166666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2296875" />
