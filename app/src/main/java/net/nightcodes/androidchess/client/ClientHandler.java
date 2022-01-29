@@ -1,5 +1,7 @@
 package net.nightcodes.androidchess.client;
 
+import android.util.Log;
+
 import org.snf4j.core.EndingAction;
 import org.snf4j.core.handler.AbstractStreamHandler;
 import org.snf4j.core.handler.SessionEvent;
@@ -23,7 +25,8 @@ public class ClientHandler extends AbstractStreamHandler {
                 getSession().write("Hello, World!");
                 break;
             case CLOSED:
-
+                Log.e("closed", "Client closed");
+                break;
         }
     }
 
