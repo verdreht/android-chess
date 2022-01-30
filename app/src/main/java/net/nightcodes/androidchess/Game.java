@@ -323,9 +323,10 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
     public Drawable findImageAsset(IEntity entityType, ImageAssetType assetType, Set<IEntity> entitySet) {
         Drawable result = null;
+        Map<ImageAssetType, Drawable.ConstantState> entityDrawables;
         for (IEntity entity : entitySet) {
             if (entity.getEntityType().equals(entityType.getEntityType())) {
-                Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
+                entityDrawables = entity.getAllDrawables();
                 for (Map.Entry<ImageAssetType, Drawable.ConstantState> entityEntry : entityDrawables.entrySet()) {
                     if (entityEntry.getKey().equals(assetType)) {
                         result = entityEntry.getValue().newDrawable();
@@ -336,13 +337,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    public Boolean isEntityWhite(Drawable entityDrawable) {
-        if (imageCollectionContainsImageAsset(entityDrawable, whiteImageAssets)) {
+    public boolean isEntityWhite(Drawable entityDrawable) {
+        if (imageCollectionContainsImageAsset(entityDrawable, whiteImageAssets, true)) {
             return true;
-        } else if (imageCollectionContainsImageAsset(entityDrawable, blackImageAssets)) {
-            return false;
         } else {
-            return null;
+            return false;
         }
     }
 
@@ -379,11 +378,30 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    public boolean isWhiteField(Button field) {
+    public boolean imageCollectionContainsImageAsset(Drawable imageAsset, Set<IEntity> imageCollection, boolean isEntityWhite) {
+        boolean result = false;
+        Map<ImageAssetType, Drawable.ConstantState> entityDrawables = null;
+        for (IEntity entity : imageCollection) {
+            if (isEntityWhite) {
+                entityDrawables = entity.getWhiteDrawables();
+            } else {
+                entityDrawables = entity.getBlackDrawables();
+            }
+            if (entityDrawables.containsValue(imageAsset.getConstantState())) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public Boolean isWhiteField(Button field) {
         if (whiteFields.contains(field)) {
             return true;
-        } else {
+        } else if (blackFields.contains(field)) {
             return false;
+        } else {
+            return null;
         }
     }
 
