@@ -31,7 +31,7 @@ public class Packet {
         JsonObject header = new JsonObject();
         header.addProperty("request_type", packetType.name());
 
-        data.add("header", data);
+        data.add("header", header);
         data.add("body", jsonElement);
 
         return data.toString().getBytes();

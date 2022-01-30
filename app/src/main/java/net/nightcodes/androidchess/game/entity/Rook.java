@@ -8,6 +8,7 @@ import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
 import net.nightcodes.androidchess.game.logic.MoveResult;
+import net.nightcodes.androidchess.game.logic.board.EntityColor;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
 
@@ -21,6 +22,9 @@ import java.util.Map;
 )
 
 public class Rook implements IEntity<Rook> {
+
+    private EntityColor entityColor;
+
     private Map<ImageAssetType, Drawable.ConstantState> drawables = new HashMap<>();
     private Map<ImageAssetType, Drawable.ConstantState> whiteDrawables = new HashMap<>();
     private Map<ImageAssetType, Drawable.ConstantState> blackDrawables = new HashMap<>();
@@ -74,4 +78,16 @@ public class Rook implements IEntity<Rook> {
     public Map<ImageAssetType, Drawable.ConstantState> getBlackDrawables() {
         return blackDrawables;
     }
+
+    @Override
+    public EntityColor getEntityColor() {
+        return entityColor;
+    }
+
+    @Override
+    public void setEntityColor(EntityColor entityColor) {
+        this.entityColor = entityColor;
+    }
+
+
 }

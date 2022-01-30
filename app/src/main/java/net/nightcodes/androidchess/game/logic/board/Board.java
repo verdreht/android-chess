@@ -5,6 +5,10 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import net.nightcodes.androidchess.game.entity.Bishop;
 import net.nightcodes.androidchess.game.entity.King;
 import net.nightcodes.androidchess.game.entity.Knight;
@@ -22,7 +26,9 @@ import java.lang.reflect.InvocationTargetException;
 public class Board {
 
     private final Field[][] board = new Field[8][8];
-    private EventManager eventManager;
+    private final EventManager eventManager;
+
+    private EntityColor currentTurn;
 
     public static Board getInstance(EventManager manager) {
         return new Board(manager);
@@ -98,8 +104,25 @@ public class Board {
             }
             builder.append("\n");
         }
-
+        System.out.println(toJson());
         return builder.toString();
+    }
+
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("current_turn", (currentTurn != null ? currentTurn.name() : "UNKNOWN"));
+        JsonArray row2 = new JsonArray();
+        for(int i = 0; i < board.length; i++) {
+            JsonArray row = new JsonArray();
+            for(int x = 0; x < board[i].length; x++) {
+                Field field = getField(i + 1, x + 1);
+                JsonObject fieldData = field.toJson();
+                if(fieldData != null) row.add(field.toJson());
+            }
+            row2.add(row);
+        }
+        json.add("fields", row2);
+        return json;
     }
 
     public Field getField(int x, int y) {

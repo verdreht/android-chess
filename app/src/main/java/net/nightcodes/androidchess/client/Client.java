@@ -1,7 +1,10 @@
 package net.nightcodes.androidchess.client;
 
 import android.accounts.NetworkErrorException;
+import android.content.Context;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import net.nightcodes.androidchess.client.packet.Packet;
 
@@ -18,14 +21,17 @@ public class Client {
     private final InetAddress address;
     private final int port;
 
-    public Client(InetAddress address, int port) {
+    private final Context context;
+
+    public Client(Context context, InetAddress address, int port) {
         this.address = address;
         this.port = port;
+        this.context = context;
     }
 
     public Client sendPackets(List<Packet> packetList) {
         new Thread(() -> {
-            SelectorLoop loop = null;
+            SelectorLoop loop;
             try {
                 loop = new SelectorLoop();
                 loop.start();
@@ -34,26 +40,11 @@ public class Client {
                 channel.configureBlocking(false);
                 channel.connect(new InetSocketAddress(address, port));
 
-                IStreamSession session = (IStreamSession) loop.register(channel, new ClientHandler()).sync().getSession();
+                loop.register(channel, new ClientHandler(context, packetList));
 
-                try {
-                    if (session.isOpen()) {
-                        for (Packet packet : packetList) {
-                            Log.e("hansi", packet.getJsonElement().toString());
-                            System.out.println("WARUM IS DA SEGA A NEGA");
-                            session.write((packet.toData()));
-                        }
-                    } else {
-                        throw new NetworkErrorException();
-                    }
-                } catch (NetworkErrorException ex) {
-                    Log.e("NetworkError", "FATAL Client-Server Error", ex);
-                }
-
+                loop.join();
             } catch(Exception ex) {
                 ex.printStackTrace();
-            } finally {
-                if(loop != null) loop.stop();
             }
         }).start();
         return this;

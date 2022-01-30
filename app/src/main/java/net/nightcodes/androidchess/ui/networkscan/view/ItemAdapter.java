@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.nightcodes.androidchess.Game;
@@ -63,7 +64,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startClient();
+                startClient(view.getContext());
                 startGame(joinButton.getContext());
             }
         });
@@ -76,8 +77,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         context.startActivity(startGame);
     }
 
-    private void startClient() {
-        this.client = new Client(remoteServer.getAddress(), remoteServer.getPort()).sendPackets(
+    private void startClient(Context activity) {
+        this.client = new Client(activity, remoteServer.getAddress(), remoteServer.getPort()).sendPackets(
                 Collections.singletonList(new ServerJoinPacket().build()));
             Log.e("balls", remoteServer.getName() + ", " + remoteServer.getAddress() + ":" + remoteServer.getPort());
     }

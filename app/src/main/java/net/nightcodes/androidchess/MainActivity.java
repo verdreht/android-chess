@@ -61,22 +61,12 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
         //Host Game
-        hostGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onHostGame();
-            }
-        });
+        hostGame.setOnClickListener(view -> onHostGame());
 
         joinGame.setOnClickListener(view -> scanGames());
 
         //TEST chess-board
-        testGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onTestGame();
-            }
-        });
+        testGame.setOnClickListener(view -> onTestGame());
     }
 
     @Override

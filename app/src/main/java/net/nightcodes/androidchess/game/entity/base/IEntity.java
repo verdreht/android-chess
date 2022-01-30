@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
 import net.nightcodes.androidchess.game.logic.MoveResult;
+import net.nightcodes.androidchess.game.logic.board.EntityColor;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 
 import java.util.Map;
@@ -19,4 +20,7 @@ public interface IEntity<T> {
     Map<ImageAssetType, Drawable.ConstantState> getAllDrawables();
     Map<ImageAssetType, Drawable.ConstantState> getWhiteDrawables();
     Map<ImageAssetType, Drawable.ConstantState> getBlackDrawables();
+    EntityColor getEntityColor();
+    void setEntityColor(EntityColor entityColor);
+
 }
