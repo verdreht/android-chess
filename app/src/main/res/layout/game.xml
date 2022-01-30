@@ -9,6 +9,8 @@
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:gravity="center"
+        android:maxWidth="320dp"
+        android:maxHeight="320dp"
         app:flow_verticalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

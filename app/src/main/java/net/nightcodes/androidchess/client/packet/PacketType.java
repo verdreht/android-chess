@@ -2,5 +2,6 @@ package net.nightcodes.androidchess.client.packet;
 
 public enum PacketType {
     SERVER_JOIN,
-    SERVER_JOIN_ACKNOWLEDGEMENT
+    SERVER_JOIN_ACKNOWLEDGEMENT,
+    SENDING_BOARD
 }

@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import net.nightcodes.androidchess.game.entity.Bishop;
 import net.nightcodes.androidchess.game.entity.King;
@@ -123,6 +122,12 @@ public class Board {
         }
         json.add("fields", row2);
         return json;
+    }
+
+    public static void fromJson(JsonObject json) {
+        Board board = Board.getInstance(new EventManager());
+        json.get("current_turn").getAsString();
+        JsonArray fields = json.get("fields").getAsJsonArray();
     }
 
     public Field getField(int x, int y) {

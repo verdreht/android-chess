@@ -1,15 +1,10 @@
 package net.nightcodes.androidchess.client;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
-import android.util.Log;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import net.nightcodes.androidchess.client.packet.Packet;
 
 import org.snf4j.core.SelectorLoop;
-import org.snf4j.core.session.IStreamSession;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -57,4 +52,6 @@ public class Client {
     public int getPort() {
         return port;
     }
+
+
 }

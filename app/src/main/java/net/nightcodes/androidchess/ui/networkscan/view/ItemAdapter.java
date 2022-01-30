@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.nightcodes.androidchess.Game;
@@ -81,6 +80,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         this.client = new Client(activity, remoteServer.getAddress(), remoteServer.getPort()).sendPackets(
                 Collections.singletonList(new ServerJoinPacket().build()));
             Log.e("balls", remoteServer.getName() + ", " + remoteServer.getAddress() + ":" + remoteServer.getPort());
+
     }
 
     // Returns the total count of items in the list

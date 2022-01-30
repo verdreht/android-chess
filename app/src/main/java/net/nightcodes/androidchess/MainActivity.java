@@ -5,18 +5,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
-import net.nightcodes.androidchess.game.logic.board.Board;
-import net.nightcodes.androidchess.game.entity.listener.EventManager;
-import net.nightcodes.androidchess.game.entity.listener.LocationChangeListenerTest;
-import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
-
-import java.util.concurrent.TimeUnit;
 
 //import net.nightcodes.androidchess.databinding.ActivityMainBinding;
 
@@ -30,9 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Button testGame;
     private Button joinHostButton;
 
-    private final EventManager eventManager = new EventManager();
-    private final Board board = Board.getInstance(eventManager);
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +31,6 @@ public class MainActivity extends AppCompatActivity {
         hostGame = findViewById(R.id.btn_hostGame);
         joinGame = findViewById(R.id.btn_joinGame);
         testGame = findViewById(R.id.btn_testGame);
-        
-        try {
-            board.setup();
-        } catch (IllegalLocationException e) {
-            e.printStackTrace();
-        }
-
-        eventManager.registerListener(new LocationChangeListenerTest());
-
-        new Thread(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Board:\n" + board.toString());
-        }).start();
 
         //Host Game
         hostGame.setOnClickListener(view -> onHostGame());
