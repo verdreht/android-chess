@@ -26,6 +26,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_rook_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -33,6 +35,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_knight_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -40,6 +44,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_bishop_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -47,6 +53,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_king_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -54,6 +62,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_queen_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -61,6 +71,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_bishop_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -68,6 +80,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_knight_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -75,6 +89,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_rook_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </TableRow>
@@ -90,6 +106,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -97,6 +115,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -104,6 +124,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -111,6 +133,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -118,6 +142,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -125,6 +151,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -132,6 +160,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -139,6 +169,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_black_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
@@ -154,6 +186,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -161,6 +195,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -168,6 +204,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -175,6 +213,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -182,6 +222,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -189,6 +231,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -196,6 +240,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -203,6 +249,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 
@@ -217,6 +265,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -224,6 +274,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -231,6 +283,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -238,6 +292,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -245,6 +301,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -252,6 +310,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -259,6 +319,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -266,6 +328,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </TableRow>
 
@@ -280,6 +344,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -287,6 +353,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -294,6 +362,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -301,6 +371,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -308,6 +380,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -315,6 +389,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -322,6 +398,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -329,6 +407,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 
@@ -343,6 +423,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -350,6 +432,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -357,6 +441,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -364,6 +450,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -371,6 +459,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -378,6 +468,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -385,6 +477,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/dark_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -392,6 +486,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/light_brown"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 
@@ -406,6 +502,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -413,6 +511,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -420,6 +520,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -427,6 +529,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
@@ -434,6 +538,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -441,6 +547,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -448,6 +556,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -455,6 +565,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_pawn_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </TableRow>
 
@@ -469,6 +581,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_rook_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -476,6 +590,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_knight_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -483,6 +599,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_bishop_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -490,6 +608,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_king_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -497,6 +617,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_queen_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -504,6 +626,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_bishop_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -511,6 +635,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_knight_white_2_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -518,6 +644,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/entity_rook_white_40x40"
+                android:maxWidth="40dp"
+                android:maxHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 

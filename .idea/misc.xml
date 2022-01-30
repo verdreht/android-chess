@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/drawable/border.xml" value="0.2703125" />
+        <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/drawable/box_shadow.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jakob/Desktop/GitHub/android-chess/app/src/main/res/layout/fragment_first.xml" value="0.25416666666666665" />
