@@ -21,6 +21,6 @@ public interface IEntity<T> {
     Map<ImageAssetType, Drawable.ConstantState> getWhiteDrawables();
     Map<ImageAssetType, Drawable.ConstantState> getBlackDrawables();
     EntityColor getEntityColor();
-    void setEntityColor(EntityColor entityColor);
+    IEntity<?> setEntityColor(EntityColor entityColor);
 
 }

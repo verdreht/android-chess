@@ -256,18 +256,17 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 }
 
             } else {
-                if (!isFirstClick) {
-                    if (isFieldExisting(view.getId(), fieldList)) {
-                        this.secondClickedField = findViewById(view.getId());
-                        Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
-                        firstClickedField.setBackground(setFieldAfterMove());
-                        secondClickedField.setBackground(newEntityIcon);
+                if (isFieldExisting(view.getId(), fieldList)) {
+                    this.secondClickedField = findViewById(view.getId());
+                    Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
+                    firstClickedField.setBackground(setFieldAfterMove());
+                    secondClickedField.setBackground(newEntityIcon);
 
-                        //resetting clickValue to make next move
-                        isFirstClick = true;
-                        //TODO: lock player's move-function when it's not his turn!!!
-                    }
+                    //resetting clickValue to make next move
+                    isFirstClick = true;
+                    //TODO: lock player's move-function when it's not his turn!!!
                 }
+
             }
         }
     }

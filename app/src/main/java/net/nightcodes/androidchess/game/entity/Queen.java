@@ -85,7 +85,8 @@ public class Queen implements IEntity<Queen> {
     }
 
     @Override
-    public void setEntityColor(EntityColor entityColor) {
+    public IEntity<?> setEntityColor(EntityColor entityColor) {
         this.entityColor = entityColor;
+        return this;
     }
 }

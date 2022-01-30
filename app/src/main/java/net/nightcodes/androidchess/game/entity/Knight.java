@@ -86,7 +86,8 @@ public class Knight implements IEntity<Knight> {
     }
 
     @Override
-    public void setEntityColor(EntityColor entityColor) {
+    public IEntity<?> setEntityColor(EntityColor entityColor) {
         this.entityColor = entityColor;
+        return this;
     }
 }

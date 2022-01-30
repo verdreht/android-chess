@@ -49,36 +49,36 @@ public class Board {
 
     private void initEntities() {
 
-        getField(1, 1).setEntity(new Rook());
-        getField(1, 2).setEntity(new Knight());
-        getField(1, 3).setEntity(new Bishop());
-        getField(1, 4).setEntity(new Queen());
-        getField(1, 5).setEntity(new King());
-        getField(1, 6).setEntity(new Bishop());
-        getField(1, 7).setEntity(new Knight());
-        getField(1, 8).setEntity(new Rook());
+        getField(1, 1).setEntity(new Rook().setEntityColor(EntityColor.BLACK));
+        getField(1, 2).setEntity(new Knight().setEntityColor(EntityColor.BLACK));
+        getField(1, 3).setEntity(new Bishop().setEntityColor(EntityColor.BLACK));
+        getField(1, 4).setEntity(new Queen().setEntityColor(EntityColor.BLACK));
+        getField(1, 5).setEntity(new King().setEntityColor(EntityColor.BLACK));
+        getField(1, 6).setEntity(new Bishop().setEntityColor(EntityColor.BLACK));
+        getField(1, 7).setEntity(new Knight().setEntityColor(EntityColor.BLACK));
+        getField(1, 8).setEntity(new Rook().setEntityColor(EntityColor.BLACK));
 
         for(int i = 1; i <= 8; i++) {
-            getField(2, i).setEntity(new Pawn());
+            getField(2, i).setEntity(new Pawn().setEntityColor(EntityColor.BLACK));
         }
 
-        getField(8, 1).setEntity(new Rook());
-        getField(8, 2).setEntity(new Knight());
-        getField(8, 3).setEntity(new Bishop());
-        getField(8, 4).setEntity(new King());
-        getField(8, 5).setEntity(new Queen());
-        getField(8, 6).setEntity(new Bishop());
-        getField(8, 7).setEntity(new Knight());
-        getField(8, 8).setEntity(new Rook());
+        getField(8, 1).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
+        getField(8, 2).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
+        getField(8, 3).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
+        getField(8, 4).setEntity(new King().setEntityColor(EntityColor.WHITE));
+        getField(8, 5).setEntity(new Queen().setEntityColor(EntityColor.WHITE));
+        getField(8, 6).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
+        getField(8, 7).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
+        getField(8, 8).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
 
         for(int i = 1; i <= 8; i++) {
-            getField(7, i).setEntity(new Pawn());
+            getField(7, i).setEntity(new Pawn().setEntityColor(EntityColor.WHITE));
         }
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public boolean move(IEntity entity, Location location) {
+    public boolean move(IEntity<?> entity, Location location) {
         try {
             if(getEventManager().call(EventManager.EventType.ENTITY_LOCATION_CHANGE, entity, location)) {
                 MoveResult moveResult = entity.canMove(location);

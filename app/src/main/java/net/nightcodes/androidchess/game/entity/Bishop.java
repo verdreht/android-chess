@@ -88,8 +88,9 @@ public class Bishop implements IEntity<Bishop> {
     }
 
     @Override
-    public void setEntityColor(EntityColor entityColor) {
+    public IEntity<?> setEntityColor(EntityColor entityColor) {
         this.entityColor = entityColor;
+        return this;
     }
 
 }
