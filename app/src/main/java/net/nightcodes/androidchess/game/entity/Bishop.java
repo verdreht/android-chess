@@ -8,7 +8,9 @@ import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
 import net.nightcodes.androidchess.game.logic.MoveResult;
+import net.nightcodes.androidchess.game.logic.board.Board;
 import net.nightcodes.androidchess.game.logic.board.EntityColor;
+import net.nightcodes.androidchess.game.logic.board.Field;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
 
@@ -33,8 +35,24 @@ public class Bishop implements IEntity<Bishop> {
     }
 
     @Override
-    public MoveResult canMove(Location location) {
-        return null;
+    public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
+        MoveResult result = MoveResult.NOT_PERMITTED;
+        for (int i = 1; i < 6; i++) {
+            if (((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i) ||
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i)) &&
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) ||
+                    (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i))) {
+                result = MoveResult.PERMITTED;
+                break;
+            } else if (((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i) ||
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i)) &&
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) ||
+                    (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i)) &&
+                    (nextMoveLocation.getFieldEntity() != null)) {
+                result = MoveResult.ENTITY_HIT;
+            }
+        }
+        return result;
     }
 
     @Override
