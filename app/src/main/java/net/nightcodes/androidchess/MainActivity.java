@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         testGame.setOnClickListener(view -> onTestGame());
 
         Constants.initBoard();
-        Constants.setServer(new Server(, 2710));
+        Constants.setServer(new Server(this, null, 2710));
     }
 
     @Override

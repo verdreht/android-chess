@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -26,10 +28,10 @@ import java.net.Socket;
 public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
 
     @SuppressLint("StaticFieldLeak")
-    private final Game game;
+    private final AppCompatActivity activity;
 
-    public ServerHandler(Game game) {
-        this.game = game;
+    public ServerHandler(AppCompatActivity activity) {
+        this.activity = activity;
     }
 
     @Override
@@ -47,9 +49,10 @@ public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
                     Log.e("doInBackground() [SRV]:", line);
 
                     if(packet.getPacketType() == PacketType.SERVER_JOIN) {
-                        Log.e("doInBackground() [SRV]:", "Join received: " + packet.toString());
+                        Log.e("doInBackground() [SRV]:", "Join received: " + packet);
                         writer.println(new BoardPacket().build().toData());
                         Log.e("doInBackground() [SRV]:", new BoardPacket().build().toData());
+                        activity.startActivity(new Intent(activity, Game.class));
                     }
 
                     line = reader.readLine();
@@ -71,7 +74,7 @@ public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
         return true;
     }
 
-    public Game getGame() {
-        return game;
+    public AppCompatActivity getActivity() {
+        return activity;
     }
 }

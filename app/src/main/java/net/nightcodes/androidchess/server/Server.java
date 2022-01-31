@@ -3,6 +3,8 @@ package net.nightcodes.androidchess.server;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import net.nightcodes.androidchess.Game;
 import net.nightcodes.androidchess.Host;
 import net.nightcodes.androidchess.utils.Utils;
@@ -19,12 +21,12 @@ public class Server implements Runnable {
     private boolean alive;
 
     private ServerSocket serverSocket;
-    private Game game;
+    private AppCompatActivity activity;
 
-    public Server(Game game, String serverName, int port) {
+    public Server(AppCompatActivity activity, String serverName, int port) {
         this.port = port;
         this.serverName = serverName;
-        this.game = game;
+        this.activity = activity;
 
         this.alive = true;
     }
@@ -37,7 +39,7 @@ public class Server implements Runnable {
 
             while(alive) {
                 Socket socket = serverSocket.accept();
-                ServerHandler handler = new ServerHandler(this.game);
+                ServerHandler handler = new ServerHandler(this.activity);
                 Log.e("run():", "Passing new connection to worker: " + socket.getInetAddress().getHostAddress());
                 handler.execute(socket);
             }
