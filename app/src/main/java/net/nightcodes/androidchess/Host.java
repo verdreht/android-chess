@@ -13,13 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.nightcodes.androidchess.server.Server;
-import net.nightcodes.androidchess.server.ServerThread;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 import net.nightcodes.androidchess.server.broadcast.BroadcastThread;
 
 public class Host extends AppCompatActivity {
 
-    private static final Server server = Server.getInstance(2710);
     private static Thread broadcastThread;
     private static BroadcastThread serverRunnable;
 
@@ -37,9 +35,9 @@ public class Host extends AppCompatActivity {
         submitButton.setOnClickListener(v -> {
             if(!serverName.getText().toString().isEmpty()) {
                 String input = serverName.getText().toString();
-                server.setServerName(input);
+                Constants.getServer().setServerName(input);
 
-                BroadcastSender sender = new BroadcastSender(server, 4445);
+                BroadcastSender sender = new BroadcastSender(Constants.getServer(), 4445);
 
                 serverRunnable = new BroadcastThread(sender, 5);
 
@@ -55,7 +53,7 @@ public class Host extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
                 spinnerText.setVisibility(View.VISIBLE);
 
-                serverThread = new Thread(new ServerThread(this, server));
+                serverThread = new Thread(Constants.getServer());
                 serverThread.start();
 
             } else {

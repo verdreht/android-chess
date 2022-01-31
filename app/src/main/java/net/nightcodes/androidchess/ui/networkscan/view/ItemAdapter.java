@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.nightcodes.androidchess.Constants;
 import net.nightcodes.androidchess.Game;
 import net.nightcodes.androidchess.R;
 import net.nightcodes.androidchess.client.Client;
+import net.nightcodes.androidchess.client.ConnectionDetails;
 import net.nightcodes.androidchess.client.packet.ServerJoinPacket;
+import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.objects.RemoteServer;
 
 import java.util.Collections;
@@ -77,10 +80,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
     private void startClient(Context activity) {
-        this.client = new Client(activity, remoteServer.getAddress(), remoteServer.getPort()).sendPackets(
-                Collections.singletonList(new ServerJoinPacket().build()));
-            Log.e("balls", remoteServer.getName() + ", " + remoteServer.getAddress() + ":" + remoteServer.getPort());
 
+        Log.e("startClient():", remoteServer.getName() + ", " + remoteServer.getAddress() + ":" + remoteServer.getPort());
+        Client client = new Client();
+        client.execute(new ConnectionDetails(remoteServer.getAddress(), remoteServer.getPort()));
+        client.sendPacket(new ServerJoinPacket().build());
+
+        Constants.setClient(new Client());
     }
 
     // Returns the total count of items in the list

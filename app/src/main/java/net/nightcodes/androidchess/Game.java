@@ -16,10 +16,6 @@ import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
-import net.nightcodes.androidchess.game.entity.listener.EventManager;
-import net.nightcodes.androidchess.game.entity.listener.LocationChangeListenerTest;
-import net.nightcodes.androidchess.game.logic.board.Board;
-import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 
@@ -118,9 +114,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private BroadcastSender broadcast;
 
     private Server server;
-
-    private final EventManager eventManager = new EventManager();
-    private final Board board = Board.getInstance(eventManager);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,13 +231,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         setOnClickListenerForAllFields(this.fieldList);
 
         //setup board
-        try {
-            board.setup();
-        } catch (IllegalLocationException e) {
-            e.printStackTrace();
-        }
-
-        eventManager.registerListener(new LocationChangeListenerTest());
 
         new Thread(() -> {
             try {
@@ -252,7 +238,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("BOARD:\n" + board.toString());
         }).start();
     }
 

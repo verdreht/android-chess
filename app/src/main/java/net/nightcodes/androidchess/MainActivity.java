@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.nightcodes.androidchess.server.Server;
+
 //import net.nightcodes.androidchess.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         //TEST chess-board
         testGame.setOnClickListener(view -> onTestGame());
+
+        Constants.initBoard();
+        Constants.setServer(new Server(, 2710));
     }
 
     @Override

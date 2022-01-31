@@ -1,53 +1,54 @@
 package net.nightcodes.androidchess.server;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
+import net.nightcodes.androidchess.Game;
 import net.nightcodes.androidchess.Host;
 import net.nightcodes.androidchess.utils.Utils;
 
-import org.snf4j.core.SelectorLoop;
-import org.snf4j.core.factory.AbstractSessionFactory;
-import org.snf4j.core.handler.IStreamHandler;
-
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-public class Server {
+public class Server implements Runnable {
 
     private final int port;
     private String serverName;
-    private Host host;
 
-    private Server(int port) {
+    private boolean alive;
+
+    private ServerSocket serverSocket;
+    private Game game;
+
+    public Server(Game game, String serverName, int port) {
         this.port = port;
+        this.serverName = serverName;
+        this.game = game;
+
+        this.alive = true;
     }
 
-    public static Server getInstance(int port) {
-        return new Server(port);
-    }
+    @Override
+    public void run() {
+        try {
+            serverSocket = new ServerSocket(port);
+            Log.e("run():", "Server initialized.");
 
-    public void start() throws IOException, InterruptedException {
-        host.addLogEntry("[SERVER] Lobby has been created! >> " + serverName);
-        host.addLogEntry("[SERVER] Initialized server! >> " + Utils.getIPAddress(true) + ":" + port);
-
-        SelectorLoop loop = new SelectorLoop();
-        loop.start();
-
-        ServerSocketChannel channel = ServerSocketChannel.open();
-        channel.configureBlocking(false);
-        channel.socket().bind(new InetSocketAddress(Utils.getIPAddress(true), port));
-
-        loop.register(channel, new AbstractSessionFactory() {
-            @Override
-            protected IStreamHandler createHandler(SocketChannel channel) {
-                return new ServerHandler(host);
+            while(alive) {
+                Socket socket = serverSocket.accept();
+                ServerHandler handler = new ServerHandler(this.game);
+                Log.e("run():", "Passing new connection to worker: " + socket.getInetAddress().getHostAddress());
+                handler.execute(socket);
             }
-        });
 
-        loop.join();
+        } catch (IOException e) {
+            Log.e("doInBackGround():", e.getMessage());
+        }
+    }
 
+    public int getPort() {
+        return port;
     }
 
     public String getServerName() {
@@ -58,15 +59,19 @@ public class Server {
         this.serverName = serverName;
     }
 
-    public int getPort() {
-        return port;
+    public boolean isAlive() {
+        return alive;
     }
 
-    public Host getHost() {
-        return host;
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
-    public void setHost(Host host) {
-        this.host = host;
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public void setServerSocket(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
     }
 }

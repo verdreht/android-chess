@@ -15,7 +15,6 @@ import net.nightcodes.androidchess.game.entity.Pawn;
 import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
-import net.nightcodes.androidchess.game.entity.listener.EventManager;
 import net.nightcodes.androidchess.game.logic.MoveResult;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
@@ -25,16 +24,11 @@ import java.lang.reflect.InvocationTargetException;
 public class Board {
 
     private final Field[][] board = new Field[8][8];
-    private final EventManager eventManager;
 
     private EntityColor currentTurn;
 
-    public static Board getInstance(EventManager manager) {
-        return new Board(manager);
-    }
-
-    private Board(EventManager manager) {
-        this.eventManager = manager;
+    public static Board getInstance() {
+        return new Board();
     }
 
     public void setup() throws IllegalLocationException {
@@ -78,15 +72,8 @@ public class Board {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean move(IEntity<?> entity, Location location) {
-        try {
-            if(getEventManager().call(EventManager.EventType.ENTITY_LOCATION_CHANGE, entity, location)) {
-                MoveResult moveResult = entity.canMove(location);
-                
-                return true;
-            }
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        MoveResult moveResult = entity.canMove(location);
+
         return false;
     }
 
@@ -115,7 +102,7 @@ public class Board {
             JsonArray row = new JsonArray();
             for(int x = 0; x < board[i].length; x++) {
                 Field field = getField(i + 1, x + 1);
-                JsonObject fieldData = field.toJson();
+                JsonObject fieldData = (field != null ? field.toJson() : null);
                 if(fieldData != null) row.add(field.toJson());
             }
             row2.add(row);
@@ -124,17 +111,16 @@ public class Board {
         return json;
     }
 
-    public static void fromJson(JsonObject json) {
-        Board board = Board.getInstance(new EventManager());
+    public static Board fromJson(JsonObject json) {
+        Board board = Board.getInstance();
         json.get("current_turn").getAsString();
         JsonArray fields = json.get("fields").getAsJsonArray();
+
+        return board;
     }
 
     public Field getField(int x, int y) {
         return board[x - 1][y - 1];
     }
 
-    public EventManager getEventManager() {
-        return eventManager;
-    }
 }
