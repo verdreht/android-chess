@@ -48,8 +48,9 @@ public class Bishop implements IEntity<Bishop> {
                     (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i)) &&
                     ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) ||
                     (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i)) &&
-                    (nextMoveLocation.getFieldEntity() != null)) {
+                    (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() != currentLocation.getFieldEntity().getEntityColor().ordinal())) {
                 result = MoveResult.ENTITY_HIT;
+                break;
             }
         }
         return result;

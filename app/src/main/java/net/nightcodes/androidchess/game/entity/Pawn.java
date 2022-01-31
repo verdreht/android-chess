@@ -42,6 +42,7 @@ public class Pawn implements IEntity<Pawn> {
                 (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 1) ||
                 (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 1) &&
                 (nextMoveLocation.getFieldEntity() != null)) {
+            //Gegner diagonal schmeißen
             return MoveResult.ENTITY_HIT;
         } else {
             return MoveResult.NOT_PERMITTED;

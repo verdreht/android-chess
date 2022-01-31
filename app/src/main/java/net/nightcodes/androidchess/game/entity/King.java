@@ -33,7 +33,9 @@ public class King implements IEntity<King> {
 
     @Override
     public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
-        return null;
+        MoveResult result = MoveResult.NOT_PERMITTED;
+
+        return result;
     }
 
     @Override
