@@ -80,7 +80,6 @@ public class Board {
     public boolean move(IEntity<?> entity, Location location) {
         try {
             if(getEventManager().call(EventManager.EventType.ENTITY_LOCATION_CHANGE, entity, location)) {
-                MoveResult moveResult = entity.canMove(location);
                 
                 return true;
             }

@@ -8,7 +8,9 @@ import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
 import net.nightcodes.androidchess.game.logic.MoveResult;
+import net.nightcodes.androidchess.game.logic.board.Board;
 import net.nightcodes.androidchess.game.logic.board.EntityColor;
+import net.nightcodes.androidchess.game.logic.board.Field;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
 
@@ -30,7 +32,7 @@ public class Knight implements IEntity<Knight> {
     private Map<ImageAssetType, Drawable.ConstantState> blackDrawables = new HashMap<>();
 
     @Override
-    public MoveResult canMove(Location location) {
+    public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
 
         return null;
     }
