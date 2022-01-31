@@ -8,12 +8,6 @@ import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
 import net.nightcodes.androidchess.game.logic.MoveResult;
-<<<<<<< Updated upstream
-=======
-import net.nightcodes.androidchess.game.logic.board.Board;
-import net.nightcodes.androidchess.game.logic.board.EntityColor;
-import net.nightcodes.androidchess.game.logic.board.Field;
->>>>>>> Stashed changes
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
 
@@ -35,7 +29,7 @@ public class Bishop implements IEntity<Bishop> {
     }
 
     @Override
-    public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
+    public MoveResult canMove(Location location) {
         return null;
     }
 
