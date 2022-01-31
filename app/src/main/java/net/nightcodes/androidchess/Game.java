@@ -2,6 +2,7 @@ package net.nightcodes.androidchess;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -230,6 +231,17 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         setOnClickListenerForAllFields(this.fieldList);
 
 
+<<<<<<< Updated upstream
+=======
+        new Thread(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.e("BOARD", "BOARD:\n" + board.toString());
+        }).start();
+>>>>>>> Stashed changes
     }
 
     public Thread getServerThread() {
