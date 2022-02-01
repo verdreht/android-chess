@@ -8,8 +8,9 @@ import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
 import net.nightcodes.androidchess.game.logic.MoveResult;
+import net.nightcodes.androidchess.game.logic.board.Board;
 import net.nightcodes.androidchess.game.logic.board.EntityColor;
-import net.nightcodes.androidchess.game.logic.movement.Location;
+import net.nightcodes.androidchess.game.logic.board.Field;
 import net.nightcodes.androidchess.game.logic.movement.MovementPermission;
 
 import java.util.HashMap;
@@ -30,8 +31,22 @@ public class Pawn implements IEntity<Pawn> {
     private Map<ImageAssetType, Drawable.ConstantState> blackDrawables = new HashMap<>();
 
     @Override
-    public MoveResult canMove(Location location) {
-        return null;
+    public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
+        if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + 1) &&
+                (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY()) &&
+                (nextMoveLocation.getFieldEntity() == null)) {
+            //1 Feld nach vorne fahren
+            return MoveResult.PERMITTED;
+        } else if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + 1) &&
+                ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 1) ||
+                (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 1)) &&
+                (nextMoveLocation.getFieldEntity() != null) &&
+                (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() != currentLocation.getFieldEntity().getEntityColor().ordinal())) {
+            //Gegner diagonal schmeißen
+            return MoveResult.ENTITY_HIT;
+        } else {
+            return MoveResult.NOT_PERMITTED;
+        }
     }
 
     @Override

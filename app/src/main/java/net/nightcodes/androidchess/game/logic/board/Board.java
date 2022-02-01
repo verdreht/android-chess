@@ -15,7 +15,6 @@ import net.nightcodes.androidchess.game.entity.Pawn;
 import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
-import net.nightcodes.androidchess.game.logic.MoveResult;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 
@@ -74,7 +73,7 @@ public class Board {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean move(IEntity<?> entity, Location location) {
-        MoveResult moveResult = entity.canMove(location);
+//        MoveResult moveResult = entity.canMove(location);
 
         return false;
     }
