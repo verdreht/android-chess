@@ -2,7 +2,6 @@ package net.nightcodes.androidchess;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -115,6 +114,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private boolean isFirstClick = true;
     private Button firstClickedField;
     private Button secondClickedField;
+    private Field firstSelectedField;
+    private Field secondSelectedField;
 
     private Thread serverThread;
     private BroadcastSender broadcast;
@@ -260,8 +261,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 if (isFieldExisting(view.getId(), fieldButtonList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
-                        Log.e("Buttonid", "ID:" + firstClickedField.getId());
-                        Log.e("Buttonid", "ID:" + view.getId());
+                        this.firstSelectedField = getClickedField(firstClickedField.getId());
                         isFirstClick = false;
                     }
                 }
@@ -269,6 +269,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             } else {
                 if (isFieldExisting(view.getId(), fieldButtonList)) {
                     this.secondClickedField = findViewById(view.getId());
+
+                    this.secondSelectedField = getClickedField(secondClickedField.getId());
+                    //TODO: check if move is valid
                     Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
                     firstClickedField.setBackground(setFieldAfterMove());
                     secondClickedField.setBackground(newEntityIcon);
@@ -282,24 +285,25 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    private void setupFieldList() {
-        //get all fields from 2D array (BOARD)
-        if (Constants.getBoard() != null) {
-            this.fieldList = Constants.getBoard().getAllFieldsAsList();
-        }
+    public Field getFirstSelectedField() {
+        return firstSelectedField;
     }
 
-    private void setupFieldMap() {
-        if (Constants.getBoard() != null) {
-            for (int i = 0; i < fieldList.size(); i++) {
-                if ((fieldList.get(i) != null) && (fieldButtonList.get(i) != null)) {
-                    this.fieldMap.put(fieldButtonList.get(i).getId(), fieldList.get(i));
-                }
+    public Field getSecondSelectedField() {
+        return secondSelectedField;
+    }
+
+    private Field getClickedField(int buttonId) {
+        Field clickedField = null;
+        for (Map.Entry<Integer, Field> fieldEntry : fieldMap.entrySet()) {
+            if (fieldEntry.getKey().equals(buttonId)) {
+                clickedField = fieldEntry.getValue();
             }
         }
+        return clickedField;
     }
 
-    public Drawable findEntityDrawableForCurrentMove(Drawable entityDrawable) {
+    private Drawable findEntityDrawableForCurrentMove(Drawable entityDrawable) {
         Drawable result = null;
         IEntity entityType = null;
 
@@ -340,7 +344,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    public Drawable setFieldAfterMove() {
+    private Drawable setFieldAfterMove() {
         if (isWhiteField(firstClickedField)) {
             return defaultFieldWhite;
         } else {
@@ -348,7 +352,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public Drawable findImageAsset(IEntity entityType, ImageAssetType assetType, Set<IEntity> entitySet) {
+    private Drawable findImageAsset(IEntity entityType, ImageAssetType assetType, Set<IEntity> entitySet) {
         Drawable result = null;
         Map<ImageAssetType, Drawable.ConstantState> entityDrawables;
         for (IEntity entity : entitySet) {
@@ -364,7 +368,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    public boolean isEntityWhite(Drawable entityDrawable) {
+    private boolean isEntityWhite(Drawable entityDrawable) {
         if (imageCollectionContainsImageAsset(entityDrawable, whiteImageAssets, true)) {
             return true;
         } else {
@@ -372,7 +376,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public IEntity getEntityTypeFromDrawable(Drawable entityDrawable, Set<IEntity> imageCollection) {
+    private IEntity getEntityTypeFromDrawable(Drawable entityDrawable, Set<IEntity> imageCollection) {
         IEntity result = null;
 
         for (IEntity entityType : imageCollection) {
@@ -393,7 +397,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
      *                   checks if the imageAsset is existing in the imageAssets Collection
      * @return true if the imageAsset is existing in imageAssets
      */
-    public boolean imageCollectionContainsImageAsset(Drawable imageAsset, Set<IEntity> imageCollection) {
+    private boolean imageCollectionContainsImageAsset(Drawable imageAsset, Set<IEntity> imageCollection) {
         boolean result = false;
         for (IEntity entity : imageCollection) {
             Map<ImageAssetType, Drawable.ConstantState> entityDrawables = entity.getAllDrawables();
@@ -405,7 +409,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    public boolean imageCollectionContainsImageAsset(Drawable imageAsset, Set<IEntity> imageCollection, boolean isEntityWhite) {
+    private boolean imageCollectionContainsImageAsset(Drawable imageAsset, Set<IEntity> imageCollection, boolean isEntityWhite) {
         boolean result = false;
         Map<ImageAssetType, Drawable.ConstantState> entityDrawables = null;
         for (IEntity entity : imageCollection) {
@@ -422,7 +426,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
-    public Boolean isWhiteField(Button field) {
+    private Boolean isWhiteField(Button field) {
         if (whiteFieldButtonList.contains(field)) {
             return true;
         } else if (blackFieldButtonList.contains(field)) {
@@ -435,13 +439,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     /*
     set OnClickListener for all fields
      */
-    public void setOnClickListenerForAllFields(List<Button> buttonList) {
+    private void setOnClickListenerForAllFields(List<Button> buttonList) {
         for (Button field : buttonList) {
             field.setOnClickListener(this);
         }
     }
 
-    public boolean isFieldExisting(int ButtonID, List<Button> fieldList) {
+    private boolean isFieldExisting(int ButtonID, List<Button> fieldList) {
         boolean result = false;
         for (Button button : fieldList) {
             if (button.getId() == ButtonID) {
@@ -458,7 +462,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
      * @param ButtonID
      * @return the Button which has the same ID like @param
      */
-    public Button getButtonById(int ButtonID) {
+    private Button getButtonById(int ButtonID) {
         Button result = null;
         for (Button button : this.fieldButtonList) {
             if (button.getId() == ButtonID) {
@@ -468,9 +472,24 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return result;
     }
 
+    private void setupFieldList() {
+        //get all fields from 2D array (BOARD)
+        if (Constants.getBoard() != null) {
+            this.fieldList = Constants.getBoard().getAllFieldsAsList();
+        }
+    }
 
+    private void setupFieldMap() {
+        if (Constants.getBoard() != null) {
+            for (int i = 0; i < fieldList.size(); i++) {
+                if ((fieldList.get(i) != null) && (fieldButtonList.get(i) != null)) {
+                    this.fieldMap.put(fieldButtonList.get(i).getId(), fieldList.get(i));
+                }
+            }
+        }
+    }
 
-    public void setAllImageAssets() {
+    private void setAllImageAssets() {
         //init
         Bishop bishop = new Bishop();
         King king = new King();
