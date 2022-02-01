@@ -1,10 +1,12 @@
 package net.nightcodes.androidchess;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
@@ -112,10 +114,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private Drawable defaultFieldBlack;
 
     private boolean isFirstClick = true;
+    //Buttons
     private Button firstClickedField;
     private Button secondClickedField;
+    //Fields for 2D Board
     private Field firstSelectedField;
     private Field secondSelectedField;
+    private IEntity movingEntity;
 
     private Thread serverThread;
     private BroadcastSender broadcast;
@@ -254,6 +259,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         return server;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
         if (view instanceof Button) {
@@ -262,6 +268,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
                         this.firstSelectedField = getClickedField(firstClickedField.getId());
+                        movingEntity = this.firstSelectedField.getFieldEntity();
                         isFirstClick = false;
                     }
                 }
@@ -272,12 +279,14 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
                     this.secondSelectedField = getClickedField(secondClickedField.getId());
                     //TODO: check if move is valid
-                    Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
-                    firstClickedField.setBackground(setFieldAfterMove());
-                    secondClickedField.setBackground(newEntityIcon);
+                    if (Constants.getBoard().isAllowedToMove(movingEntity, firstSelectedField, secondSelectedField)) {
+                        Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
+                        firstClickedField.setBackground(setFieldAfterMove());
+                        secondClickedField.setBackground(newEntityIcon);
+                        //resetting clickValue to make next move
+                        isFirstClick = true;
+                    }
 
-                    //resetting clickValue to make next move
-                    isFirstClick = true;
                     //TODO: lock player's move-function when it's not his turn!!!
                 }
 

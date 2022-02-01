@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import net.nightcodes.androidchess.Constants;
 import net.nightcodes.androidchess.game.entity.Bishop;
 import net.nightcodes.androidchess.game.entity.King;
 import net.nightcodes.androidchess.game.entity.Knight;
@@ -15,6 +16,7 @@ import net.nightcodes.androidchess.game.entity.Pawn;
 import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
+import net.nightcodes.androidchess.game.logic.MoveResult;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 
@@ -72,10 +74,12 @@ public class Board {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public boolean move(IEntity<?> entity, Location location) {
-//        MoveResult moveResult = entity.canMove(location);
-
-        return false;
+    public boolean isAllowedToMove(IEntity<?> entity, Field currentLocation, Field nextMoveLocation) {
+        if (!entity.canMove(currentLocation, nextMoveLocation, Constants.getBoard()).equals(MoveResult.NOT_PERMITTED)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @NonNull
