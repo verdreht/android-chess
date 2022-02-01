@@ -2,6 +2,7 @@ package net.nightcodes.androidchess;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +17,7 @@ import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
+import net.nightcodes.androidchess.game.logic.board.Field;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
 
@@ -25,7 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
+import java.util.TreeMap;
 
 public class Game extends AppCompatActivity implements View.OnClickListener {
 
@@ -99,9 +101,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private Button field_h7;
     private Button field_h8;
     //initialize fields -- END
-    private List<Button> fieldList = new ArrayList<>();
-    private List<Button> whiteFields = new ArrayList<>();
-    private List<Button> blackFields = new ArrayList<>();
+    private List<Button> fieldButtonList = new ArrayList<>();
+    private List<Button> whiteFieldButtonList = new ArrayList<>();
+    private List<Button> blackFieldButtonList = new ArrayList<>();
+    //all Fields from the 2D Board
+    private List<Field> fieldList = new ArrayList<>();
+    //initialize Map of fields KEY: id of the buttons, VALUE: Field that matches the buttonID(KEY)
+    private Map<Integer, Field> fieldMap = new TreeMap<>();
 
     private Drawable defaultFieldWhite;
     private Drawable defaultFieldBlack;
@@ -194,7 +200,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         //set button IDs -- END
 
         //add Buttons to List -- START
-        this.fieldList.addAll(Arrays.asList(
+        this.fieldButtonList.addAll(Arrays.asList(
                 field_a1, field_a2, field_a3, field_a4, field_a5, field_a6, field_a7, field_a8,
                 field_b1, field_b2, field_b3, field_b4, field_b5, field_b6, field_b7, field_b8,
                 field_c1, field_c2, field_c3, field_c4, field_c5, field_c6, field_c7, field_c8,
@@ -205,7 +211,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 field_h1, field_h2, field_h3, field_h4, field_h5, field_h6, field_h7, field_h8
         ));
 
-        this.blackFields.addAll(Arrays.asList(
+        this.blackFieldButtonList.addAll(Arrays.asList(
                 field_a1, field_a3, field_a5, field_a7,
                 field_b2, field_b4, field_b6, field_b8,
                 field_c1, field_c3, field_c5, field_c7,
@@ -216,7 +222,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 field_h2, field_h4, field_h6, field_h8
         ));
 
-        this.whiteFields.addAll(Arrays.asList(
+        this.whiteFieldButtonList.addAll(Arrays.asList(
                 field_a2, field_a4, field_a6, field_a8,
                 field_b1, field_b3, field_b5, field_b7,
                 field_c2, field_c4, field_c6, field_c8,
@@ -228,17 +234,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         ));
         //add Buttons to List -- END
         setAllImageAssets();
-        setOnClickListenerForAllFields(this.fieldList);
+        setOnClickListenerForAllFields(this.fieldButtonList);
 
-        //setup board
+        setupFieldList();
+        setupFieldMap();
 
-        new Thread(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
     }
 
     public Thread getServerThread() {
@@ -257,15 +257,17 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view instanceof Button) {
             if (isFirstClick) {
-                if (isFieldExisting(view.getId(), fieldList)) {
+                if (isFieldExisting(view.getId(), fieldButtonList)) {
                     this.firstClickedField = getButtonById(view.getId());
                     if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
+                        Log.e("Buttonid", "ID:" + firstClickedField.getId());
+                        Log.e("Buttonid", "ID:" + view.getId());
                         isFirstClick = false;
                     }
                 }
 
             } else {
-                if (isFieldExisting(view.getId(), fieldList)) {
+                if (isFieldExisting(view.getId(), fieldButtonList)) {
                     this.secondClickedField = findViewById(view.getId());
                     Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
                     firstClickedField.setBackground(setFieldAfterMove());
@@ -276,6 +278,23 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     //TODO: lock player's move-function when it's not his turn!!!
                 }
 
+            }
+        }
+    }
+
+    private void setupFieldList() {
+        //get all fields from 2D array (BOARD)
+        if (Constants.getBoard() != null) {
+            this.fieldList = Constants.getBoard().getAllFieldsAsList();
+        }
+    }
+
+    private void setupFieldMap() {
+        if (Constants.getBoard() != null) {
+            for (int i = 0; i < fieldList.size(); i++) {
+                if ((fieldList.get(i) != null) && (fieldButtonList.get(i) != null)) {
+                    this.fieldMap.put(fieldButtonList.get(i).getId(), fieldList.get(i));
+                }
             }
         }
     }
@@ -404,9 +423,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     }
 
     public Boolean isWhiteField(Button field) {
-        if (whiteFields.contains(field)) {
+        if (whiteFieldButtonList.contains(field)) {
             return true;
-        } else if (blackFields.contains(field)) {
+        } else if (blackFieldButtonList.contains(field)) {
             return false;
         } else {
             return null;
@@ -441,13 +460,15 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
      */
     public Button getButtonById(int ButtonID) {
         Button result = null;
-        for (Button button : this.fieldList) {
+        for (Button button : this.fieldButtonList) {
             if (button.getId() == ButtonID) {
                 result = button;
             }
         }
         return result;
     }
+
+
 
     public void setAllImageAssets() {
         //init

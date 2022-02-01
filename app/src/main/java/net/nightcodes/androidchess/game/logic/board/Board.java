@@ -19,7 +19,9 @@ import net.nightcodes.androidchess.game.logic.MoveResult;
 import net.nightcodes.androidchess.game.logic.movement.Location;
 import net.nightcodes.androidchess.game.logic.movement.exception.IllegalLocationException;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Board {
 
@@ -42,30 +44,30 @@ public class Board {
 
     private void initEntities() {
 
-        getField(1, 1).setEntity(new Rook().setEntityColor(EntityColor.BLACK));
-        getField(1, 2).setEntity(new Knight().setEntityColor(EntityColor.BLACK));
-        getField(1, 3).setEntity(new Bishop().setEntityColor(EntityColor.BLACK));
-        getField(1, 4).setEntity(new Queen().setEntityColor(EntityColor.BLACK));
-        getField(1, 5).setEntity(new King().setEntityColor(EntityColor.BLACK));
-        getField(1, 6).setEntity(new Bishop().setEntityColor(EntityColor.BLACK));
-        getField(1, 7).setEntity(new Knight().setEntityColor(EntityColor.BLACK));
-        getField(1, 8).setEntity(new Rook().setEntityColor(EntityColor.BLACK));
+        getField(1, 1).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
+        getField(1, 2).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
+        getField(1, 3).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
+        getField(1, 4).setEntity(new Queen().setEntityColor(EntityColor.WHITE));
+        getField(1, 5).setEntity(new King().setEntityColor(EntityColor.WHITE));
+        getField(1, 6).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
+        getField(1, 7).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
+        getField(1, 8).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
 
         for(int i = 1; i <= 8; i++) {
-            getField(2, i).setEntity(new Pawn().setEntityColor(EntityColor.BLACK));
+            getField(2, i).setEntity(new Pawn().setEntityColor(EntityColor.WHITE));
         }
 
-        getField(8, 1).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
-        getField(8, 2).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
-        getField(8, 3).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
-        getField(8, 4).setEntity(new King().setEntityColor(EntityColor.WHITE));
-        getField(8, 5).setEntity(new Queen().setEntityColor(EntityColor.WHITE));
-        getField(8, 6).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
-        getField(8, 7).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
-        getField(8, 8).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
+        getField(8, 1).setEntity(new Rook().setEntityColor(EntityColor.BLACK));
+        getField(8, 2).setEntity(new Knight().setEntityColor(EntityColor.BLACK));
+        getField(8, 3).setEntity(new Bishop().setEntityColor(EntityColor.BLACK));
+        getField(8, 4).setEntity(new King().setEntityColor(EntityColor.BLACK));
+        getField(8, 5).setEntity(new Queen().setEntityColor(EntityColor.BLACK));
+        getField(8, 6).setEntity(new Bishop().setEntityColor(EntityColor.BLACK));
+        getField(8, 7).setEntity(new Knight().setEntityColor(EntityColor.BLACK));
+        getField(8, 8).setEntity(new Rook().setEntityColor(EntityColor.BLACK));
 
         for(int i = 1; i <= 8; i++) {
-            getField(7, i).setEntity(new Pawn().setEntityColor(EntityColor.WHITE));
+            getField(7, i).setEntity(new Pawn().setEntityColor(EntityColor.BLACK));
         }
 
     }
@@ -119,8 +121,24 @@ public class Board {
         return board;
     }
 
+    public List<Field> getAllFieldsAsList() {
+        List<Field> allFields = new ArrayList<>();
+        for (int i = 0; i < board.length; i++) {
+            allFields.addAll(Arrays.asList(board[i]));
+        }
+        return allFields;
+    }
+
     public Field getField(int x, int y) {
         return board[x - 1][y - 1];
+    }
+
+    public int getXCoordinates(Field field) {
+        return field.getFieldLocation().getX();
+    }
+
+    public int getYCoodinates(Field field) {
+        return field.getFieldLocation().getY();
     }
 
 }
