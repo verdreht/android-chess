@@ -244,7 +244,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
         setupFieldList();
         setupFieldMap();
-
     }
 
     public Thread getServerThread() {

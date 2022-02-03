@@ -85,6 +85,7 @@ public class Board {
     public void move(IEntity entity, Field currentLocation, Field nextMoveLocation) {
         nextMoveLocation.setEntity(entity);
         currentLocation.setEntity(null);
+        Constants.getBoardEventManager().call(this);
     }
 
     @NonNull
