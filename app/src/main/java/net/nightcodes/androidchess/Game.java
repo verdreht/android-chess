@@ -280,6 +280,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     this.secondSelectedField = getClickedField(secondClickedField.getId());
                     //TODO: check if move is valid
                     if (Constants.getBoard().isAllowedToMove(movingEntity, firstSelectedField, secondSelectedField)) {
+                        Constants.getBoard().move(movingEntity, firstSelectedField, secondSelectedField);
                         Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
                         firstClickedField.setBackground(setFieldAfterMove());
                         secondClickedField.setBackground(newEntityIcon);
