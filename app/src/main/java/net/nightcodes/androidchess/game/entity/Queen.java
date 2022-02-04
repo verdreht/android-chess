@@ -32,7 +32,46 @@ public class Queen implements IEntity<Queen> {
 
     @Override
     public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
-        return null;
+        MoveResult moveResult = MoveResult.NOT_PERMITTED;
+        for (int i = 0; i < 7; i++) {
+            if (
+                    //senkrecht nach oben
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY())) ||
+                    //senkrecht nach unten
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY())) ||
+                    //waagrecht nach rechts
+                    ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i) &&
+                    (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX())) ||
+                    //waagrecht nach links
+                    ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i) &&
+                    (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX())) ||
+                    //schräg rechts nach oben
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i)) ||
+                    //schräg links nach oben
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i)) ||
+                    //schräg rechts nach unten
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i)) ||
+                    //schräg links nach unten
+                    ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i))
+            ) {
+                if (nextMoveLocation.getFieldEntity() != null) {
+                    if (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() != currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                        moveResult = MoveResult.ENTITY_HIT;
+                        break;
+                    }
+                } else {
+                    moveResult = MoveResult.PERMITTED;
+                    break;
+                }
+            }
+        }
+        return moveResult;
     }
 
     @Override
