@@ -283,9 +283,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                         Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
                         firstClickedField.setBackground(setFieldAfterMove());
                         secondClickedField.setBackground(newEntityIcon);
-                        //resetting clickValue to make next move
-                        isFirstClick = true;
                     }
+                    //resetting clickValue to make next move
+                    isFirstClick = true;
 
                     //TODO: lock player's move-function when it's not his turn!!!
                 }
