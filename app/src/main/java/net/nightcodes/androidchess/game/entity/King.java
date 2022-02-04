@@ -44,12 +44,14 @@ public class King implements IEntity<King> {
                 ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 1) && (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - 1)) ||
                 ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 1) && (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - 1)) ||
                 ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 1) && (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + 1))) {
-            if ((nextMoveLocation.getFieldLocation() != null) && (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() != currentLocation.getFieldEntity().getEntityColor().ordinal())) {
-                moveResult = MoveResult.ENTITY_HIT;
-            } else if (nextMoveLocation.getFieldEntity() != null && (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal())) {
-                moveResult = MoveResult.NOT_PERMITTED;
-            } else if (nextMoveLocation.getFieldEntity() == null) {
+            if (nextMoveLocation.getFieldEntity() == null) {
                 moveResult = MoveResult.PERMITTED;
+            } else {
+                if (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() != currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                    moveResult = MoveResult.ENTITY_HIT;
+                } else {
+                    moveResult = MoveResult.NOT_PERMITTED;
+                }
             }
         }
         return moveResult;

@@ -48,8 +48,8 @@ public class Board {
         getField(1, 1).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
         getField(1, 2).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
         getField(1, 3).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
-        getField(1, 4).setEntity(new Queen().setEntityColor(EntityColor.WHITE));
-        getField(1, 5).setEntity(new King().setEntityColor(EntityColor.WHITE));
+        getField(1, 4).setEntity(new King().setEntityColor(EntityColor.WHITE));
+        getField(1, 5).setEntity(new Queen().setEntityColor(EntityColor.WHITE));
         getField(1, 6).setEntity(new Bishop().setEntityColor(EntityColor.WHITE));
         getField(1, 7).setEntity(new Knight().setEntityColor(EntityColor.WHITE));
         getField(1, 8).setEntity(new Rook().setEntityColor(EntityColor.WHITE));
