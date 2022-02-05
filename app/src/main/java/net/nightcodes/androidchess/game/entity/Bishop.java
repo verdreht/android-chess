@@ -3,7 +3,6 @@ package net.nightcodes.androidchess.game.entity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
-import net.nightcodes.androidchess.Constants;
 import net.nightcodes.androidchess.R;
 import net.nightcodes.androidchess.game.entity.base.EntityIdentification;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
@@ -41,32 +40,32 @@ public class Bishop implements IEntity<Bishop> {
             if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) &&
                     (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i)) {
                 //schräg rechts nach oben
-                if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity() != null) {
-                    if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                if (board.getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
                         return MoveResult.NOT_PERMITTED;
                     }
                 }
             } else if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) &&
                     (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i)) {
                 //schräg links nach oben
-                if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity() != null) {
-                    if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                if (board.getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
                         return MoveResult.NOT_PERMITTED;
                     }
                 }
             } else if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i) &&
                     (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i)) {
                 //schräg rechts nach unten
-                if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity() != null) {
-                    if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                if (board.getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() + 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
                         return MoveResult.NOT_PERMITTED;
                     }
                 }
             } else if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i) &&
                     (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i)) {
                 //schräg links nach unten
-                if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity() != null) {
-                    if (Constants.getBoard().getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                if (board.getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY() - 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
                         return MoveResult.NOT_PERMITTED;
                     }
                 }
