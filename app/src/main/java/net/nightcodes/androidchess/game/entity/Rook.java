@@ -32,7 +32,59 @@ public class Rook implements IEntity<Rook> {
 
     @Override
     public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
-        return null;
+        MoveResult moveResult = MoveResult.NOT_PERMITTED;
+        for (int i = 0; i < 7; i++) {
+            if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY())) {
+                //senkrecht nach oben
+                if (board.getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY()).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX() + 1, currentLocation.getFieldLocation().getY()).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                        return MoveResult.NOT_PERMITTED;
+                    } else {
+                        return MoveResult.ENTITY_HIT;
+                    }
+                } else {
+                    return MoveResult.PERMITTED;
+                }
+            } else if ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - i) &&
+                    (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY())) {
+                //senkrecht nach unten
+                if (board.getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY()).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX() - 1, currentLocation.getFieldLocation().getY()).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                        return MoveResult.NOT_PERMITTED;
+                    } else {
+                        return MoveResult.ENTITY_HIT;
+                    }
+                } else {
+                    return MoveResult.PERMITTED;
+                }
+            } else if ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + i) &&
+                    (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX())) {
+                //waagrecht nach rechts
+                if (board.getField(currentLocation.getFieldLocation().getX(), currentLocation.getFieldLocation().getY() + 1).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX(), currentLocation.getFieldLocation().getY() + 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                        return MoveResult.NOT_PERMITTED;
+                    } else {
+                        return MoveResult.ENTITY_HIT;
+                    }
+                } else {
+                    return MoveResult.PERMITTED;
+                }
+            } else if ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - i) &&
+                    (nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX())) {
+                //waagrecht nach links
+                if (board.getField(currentLocation.getFieldLocation().getX(), currentLocation.getFieldLocation().getY() - 1).getFieldEntity() != null) {
+                    if (board.getField(currentLocation.getFieldLocation().getX(), currentLocation.getFieldLocation().getY() - 1).getFieldEntity().getEntityColor().ordinal() == currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                        return MoveResult.NOT_PERMITTED;
+                    } else {
+                        return MoveResult.ENTITY_HIT;
+                    }
+                } else {
+                    return MoveResult.PERMITTED;
+                }
+            }
+        }
+        return moveResult;
     }
 
     @Override
