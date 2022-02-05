@@ -32,8 +32,35 @@ public class Knight implements IEntity<Knight> {
 
     @Override
     public MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board) {
-
-        return null;
+        if (
+                        //2 nach oben, (1 nach rechts) ODER (1 nach links)
+                ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + 2) &&
+                ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 1) || (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 1)))
+                ||
+                        //1 nach oben, (2 nach rechts) ODER (2 nach links)
+                ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() + 1) &&
+                ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 2) || (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 2)))
+                ||
+                        //2 nach unten, (1 nach rechts) ODER (1 nach links)
+                ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - 2) &&
+                ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 1) || (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 1)))
+                ||
+                        //1 nach unten, (2 nach rechts) ODER (2 nach links)
+                ((nextMoveLocation.getFieldLocation().getX() == currentLocation.getFieldLocation().getX() - 1) &&
+                ((nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() + 2) || (nextMoveLocation.getFieldLocation().getY() == currentLocation.getFieldLocation().getY() - 2)))
+        ) {
+            if (nextMoveLocation.getFieldEntity() == null) {
+                return MoveResult.PERMITTED;
+            } else {
+                if (nextMoveLocation.getFieldEntity().getEntityColor().ordinal() != currentLocation.getFieldEntity().getEntityColor().ordinal()) {
+                    return MoveResult.ENTITY_HIT;
+                } else {
+                    return MoveResult.NOT_PERMITTED;
+                }
+            }
+        } else {
+            return MoveResult.NOT_PERMITTED;
+        }
     }
 
     @Override
