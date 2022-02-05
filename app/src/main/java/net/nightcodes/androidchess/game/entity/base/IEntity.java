@@ -14,6 +14,7 @@ public interface IEntity<T> {
 
     MoveResult canMove(Field currentLocation, Field nextMoveLocation, Board board);
     Class<T> getEntityType();
+    String getEntityTypeRaw();
     String consoleIcon();
     void setAllDrawables(Resources resources);
     void setWhiteDrawables(Resources resources);

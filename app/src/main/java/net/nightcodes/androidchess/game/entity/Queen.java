@@ -148,6 +148,11 @@ public class Queen implements IEntity<Queen> {
     }
 
     @Override
+    public String getEntityTypeRaw() {
+        return "Queen";
+    }
+
+    @Override
     public String consoleIcon() {
         return "♕";
     }

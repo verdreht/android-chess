@@ -93,6 +93,11 @@ public class Rook implements IEntity<Rook> {
     }
 
     @Override
+    public String getEntityTypeRaw() {
+        return "Rook";
+    }
+
+    @Override
     public String consoleIcon() {
         return "♖";
     }
@@ -142,6 +147,4 @@ public class Rook implements IEntity<Rook> {
         this.entityColor = entityColor;
         return this;
     }
-
-
 }

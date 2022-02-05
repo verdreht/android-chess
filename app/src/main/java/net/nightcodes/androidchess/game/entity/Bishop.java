@@ -94,6 +94,11 @@ public class Bishop implements IEntity<Bishop> {
     }
 
     @Override
+    public String getEntityTypeRaw() {
+        return "Bishop";
+    }
+
+    @Override
     public String consoleIcon() {
         return "♗";
     }

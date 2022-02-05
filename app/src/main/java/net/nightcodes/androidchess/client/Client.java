@@ -3,27 +3,18 @@ package net.nightcodes.androidchess.client;
  import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.gson.JsonObject;
- import com.google.gson.JsonParser;
+import net.nightcodes.androidchess.Constants;
+import net.nightcodes.androidchess.client.packet.Packet;
+import net.nightcodes.androidchess.client.packet.PacketType;
+import net.nightcodes.androidchess.game.logic.board.Board;
 
- import net.nightcodes.androidchess.Constants;
- import net.nightcodes.androidchess.Game;
- import net.nightcodes.androidchess.client.packet.Packet;
- import net.nightcodes.androidchess.client.packet.PacketType;
- import net.nightcodes.androidchess.game.logic.board.Board;
-
- import java.io.BufferedReader;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
- import java.util.ArrayList;
- import java.util.HashMap;
- import java.util.LinkedList;
- import java.util.List;
- import java.util.Map;
- import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
 

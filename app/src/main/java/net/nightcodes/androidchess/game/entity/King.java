@@ -63,6 +63,11 @@ public class King implements IEntity<King> {
     }
 
     @Override
+    public String getEntityTypeRaw() {
+        return "King";
+    }
+
+    @Override
     public String consoleIcon() {
         return "♔";
     }

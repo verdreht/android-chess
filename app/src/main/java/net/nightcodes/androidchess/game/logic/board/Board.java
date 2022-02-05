@@ -1,6 +1,7 @@
 package net.nightcodes.androidchess.game.logic.board;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -105,6 +106,19 @@ public class Board {
         return builder.toString();
     }
 
+    public void addFieldToBoard(Field field) {
+        if (field != null) {
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    if (board[i][j] == null) {
+                        board[i][j] = field;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
         json.addProperty("current_turn", (currentTurn != null ? currentTurn.name() : "UNKNOWN"));
@@ -114,7 +128,7 @@ public class Board {
             for(int x = 0; x < board[i].length; x++) {
                 Field field = getField(i + 1, x + 1);
                 JsonObject fieldData = (field != null ? field.toJson() : null);
-                if(fieldData != null) row.add(field.toJson());
+                if(fieldData != null) row.add(fieldData);
             }
             row2.add(row);
         }
@@ -122,10 +136,75 @@ public class Board {
         return json;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static Board fromJson(JsonObject json) {
         Board board = Board.getInstance();
-        json.get("current_turn").getAsString();
+        if (json.get("current_turn").getAsString().equals("WHITE")) {
+            Constants.setIsServerOnTurn(true);
+        } else if (json.get("current_turn").getAsString().equals("BLACK")) {
+            Constants.setIsServerOnTurn(false);
+        }
         JsonArray fields = json.get("fields").getAsJsonArray();
+        fields.forEach(row -> {
+            JsonArray column = row.getAsJsonArray();
+            column.forEach(entity -> {
+
+                if (!entity.getAsJsonObject().has("entity_type")) {
+                    Log.e("EntityNull", "hansi du deppada");
+                }
+
+                String entityType = entity.getAsJsonObject().get("entity_type").getAsString();
+                EntityColor entityColor = EntityColor.valueOf(entity.getAsJsonObject().get("entity_color").getAsString());
+                JsonObject locationAsJson = (JsonObject) entity.getAsJsonObject().get("location");
+                int locationX = Integer.parseInt(locationAsJson.get("pos_x").getAsString());
+                int locationY = Integer.parseInt(locationAsJson.get("pos_y").getAsString());
+
+                IEntity newEntity = null;
+                switch (entityType) {
+                    case "Rook":
+                        newEntity = new Rook();
+                        newEntity.setEntityColor(entityColor);
+                        break;
+                    case "Queen":
+                        newEntity = new Queen();
+                        newEntity.setEntityColor(entityColor);
+                        break;
+                    case "King":
+                        newEntity = new King();
+                        newEntity.setEntityColor(entityColor);
+                        break;
+                    case "Knight":
+                        newEntity = new Knight();
+                        newEntity.setEntityColor(entityColor);
+                        break;
+                    case "Bishop":
+                        newEntity = new Bishop();
+                        newEntity.setEntityColor(entityColor);
+                        break;
+                    case "Pawn":
+                        newEntity = new Pawn();
+                        newEntity.setEntityColor(entityColor);
+                        break;
+                    default:
+                        break;
+                }
+
+                Field newField = null;
+
+                if (newEntity != null) {
+                    try {
+                        newField = new Field(new Location(locationX, locationY));
+                    } catch (IllegalLocationException e) {
+                        e.printStackTrace();
+                    }
+                    newField.setEntity(newEntity);
+                }
+
+                board.addFieldToBoard(newField);
+                System.out.println("");
+            });
+        });
+
 
         return board;
     }

@@ -55,6 +55,11 @@ public class Pawn implements IEntity<Pawn> {
     }
 
     @Override
+    public String getEntityTypeRaw() {
+        return "Pawn";
+    }
+
+    @Override
     public String consoleIcon() {
         return "♙";
     }

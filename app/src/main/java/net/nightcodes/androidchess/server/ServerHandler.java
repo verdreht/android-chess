@@ -7,17 +7,11 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import net.nightcodes.androidchess.Constants;
 import net.nightcodes.androidchess.Game;
-import net.nightcodes.androidchess.Host;
 import net.nightcodes.androidchess.client.packet.BoardPacket;
 import net.nightcodes.androidchess.client.packet.Packet;
 import net.nightcodes.androidchess.client.packet.PacketType;
-
-import org.snf4j.core.handler.AbstractStreamHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,6 +47,11 @@ public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
                         writer.println(new BoardPacket().build().toData());
                         Log.e("doInBackground() [SRV]:", new BoardPacket().build().toData());
                         activity.startActivity(new Intent(activity, Game.class));
+
+                        Constants.setIsServerOnTurn(true);
+                        Log.e("isServerOnTurn", Constants.isServerOnTurn() + "");
+
+
                     }
 
                     line = reader.readLine();

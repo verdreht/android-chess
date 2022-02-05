@@ -69,6 +69,11 @@ public class Knight implements IEntity<Knight> {
     }
 
     @Override
+    public String getEntityTypeRaw() {
+        return "Knight";
+    }
+
+    @Override
     public String consoleIcon() {
         return "♘";
     }

@@ -17,10 +17,8 @@ import net.nightcodes.androidchess.R;
 import net.nightcodes.androidchess.client.Client;
 import net.nightcodes.androidchess.client.ConnectionDetails;
 import net.nightcodes.androidchess.client.packet.ServerJoinPacket;
-import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.objects.RemoteServer;
 
-import java.util.Collections;
 import java.util.List;
 
 

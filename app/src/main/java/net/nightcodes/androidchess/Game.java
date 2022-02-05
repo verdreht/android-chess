@@ -262,6 +262,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view instanceof Button) {
+
             if (isFirstClick) {
                 if (isFieldExisting(view.getId(), fieldButtonList)) {
                     this.firstClickedField = getButtonById(view.getId());
