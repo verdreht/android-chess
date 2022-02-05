@@ -33,27 +33,23 @@ public class Field {
     @NonNull
     @Override
     public String toString() {
-        if(fieldEntity != null) return fieldEntity.consoleIcon(); else return "  ";
+        if (fieldEntity != null) return fieldEntity.consoleIcon();
+        else return "  ";
     }
 
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
-        if(fieldEntity != null) {
+        if (fieldEntity != null) {
             EntityIdentification identification = EntityHelper.getAnnotation(fieldEntity);
-
             json.addProperty("entity_type", identification.name());
             json.addProperty("entity_color", (fieldEntity.getEntityColor() != null ? fieldEntity.getEntityColor().name() : EntityColor.UNKNOWN.name()));
-
-            JsonObject location = new JsonObject();
-            location.addProperty("pos_x", fieldLocation.getX());
-            location.addProperty("pos_y", fieldLocation.getY());
-
-            json.add("location", location);
-
-            return json;
-
         }
+        JsonObject location = new JsonObject();
+        location.addProperty("pos_x", fieldLocation.getX());
+        location.addProperty("pos_y", fieldLocation.getY());
 
-        return null;
+        json.add("location", location);
+
+        return json;
     }
 }

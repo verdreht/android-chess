@@ -1,7 +1,6 @@
 package net.nightcodes.androidchess.game.logic.board;
 
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -149,59 +148,62 @@ public class Board {
             JsonArray column = row.getAsJsonArray();
             column.forEach(entity -> {
 
-                if (!entity.getAsJsonObject().has("entity_type")) {
-                    Log.e("EntityNull", "hansi du deppada");
-                }
+                IEntity<?> newEntity = null;
 
-                String entityType = entity.getAsJsonObject().get("entity_type").getAsString();
-                EntityColor entityColor = EntityColor.valueOf(entity.getAsJsonObject().get("entity_color").getAsString());
+                if (!entity.getAsJsonObject().has("entity_type")) {
+                    //debug log
+//                    Log.e("EntityNull", "hansi du deppada");
+                } else {
+
+
+                    String entityType = entity.getAsJsonObject().get("entity_type").getAsString();
+                    EntityColor entityColor = EntityColor.valueOf(entity.getAsJsonObject().get("entity_color").getAsString());
+
+                    switch (entityType) {
+                        case "Rook":
+                            newEntity = new Rook();
+                            newEntity.setEntityColor(entityColor);
+                            break;
+                        case "Queen":
+                            newEntity = new Queen();
+                            newEntity.setEntityColor(entityColor);
+                            break;
+                        case "King":
+                            newEntity = new King();
+                            newEntity.setEntityColor(entityColor);
+                            break;
+                        case "Knight":
+                            newEntity = new Knight();
+                            newEntity.setEntityColor(entityColor);
+                            break;
+                        case "Bishop":
+                            newEntity = new Bishop();
+                            newEntity.setEntityColor(entityColor);
+                            break;
+                        case "Pawn":
+                            newEntity = new Pawn();
+                            newEntity.setEntityColor(entityColor);
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 JsonObject locationAsJson = (JsonObject) entity.getAsJsonObject().get("location");
                 int locationX = Integer.parseInt(locationAsJson.get("pos_x").getAsString());
                 int locationY = Integer.parseInt(locationAsJson.get("pos_y").getAsString());
 
-                IEntity newEntity = null;
-                switch (entityType) {
-                    case "Rook":
-                        newEntity = new Rook();
-                        newEntity.setEntityColor(entityColor);
-                        break;
-                    case "Queen":
-                        newEntity = new Queen();
-                        newEntity.setEntityColor(entityColor);
-                        break;
-                    case "King":
-                        newEntity = new King();
-                        newEntity.setEntityColor(entityColor);
-                        break;
-                    case "Knight":
-                        newEntity = new Knight();
-                        newEntity.setEntityColor(entityColor);
-                        break;
-                    case "Bishop":
-                        newEntity = new Bishop();
-                        newEntity.setEntityColor(entityColor);
-                        break;
-                    case "Pawn":
-                        newEntity = new Pawn();
-                        newEntity.setEntityColor(entityColor);
-                        break;
-                    default:
-                        break;
-                }
-
                 Field newField = null;
 
+                try {
+                    newField = new Field(new Location(locationX, locationY));
+                } catch (IllegalLocationException e) {
+                    e.printStackTrace();
+                }
                 if (newEntity != null) {
-                    try {
-                        newField = new Field(new Location(locationX, locationY));
-                    } catch (IllegalLocationException e) {
-                        e.printStackTrace();
-                    }
                     newField.setEntity(newEntity);
                 }
 
                 board.addFieldToBoard(newField);
-                System.out.println("");
             });
         });
 
