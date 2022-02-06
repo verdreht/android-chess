@@ -27,8 +27,7 @@ import java.util.List;
 public class Board {
 
     private final Field[][] board = new Field[8][8];
-
-    private EntityColor currentTurn;
+    private EntityColor currentTurn = EntityColor.WHITE;
 
     public static Board getInstance() {
         return new Board();
@@ -120,7 +119,7 @@ public class Board {
 
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
-        json.addProperty("current_turn", (currentTurn != null ? currentTurn.name() : "UNKNOWN"));
+        json.addProperty("current_turn", currentTurn.name());
         JsonArray row2 = new JsonArray();
         for(int i = 0; i < board.length; i++) {
             JsonArray row = new JsonArray();
@@ -139,9 +138,9 @@ public class Board {
     public static Board fromJson(JsonObject json) {
         Board board = Board.getInstance();
         if (json.get("current_turn").getAsString().equals("WHITE")) {
-            Constants.setIsServerOnTurn(true);
+            board.setCurrentTurn(EntityColor.WHITE);
         } else if (json.get("current_turn").getAsString().equals("BLACK")) {
-            Constants.setIsServerOnTurn(false);
+            board.setCurrentTurn(EntityColor.BLACK);
         }
         JsonArray fields = json.get("fields").getAsJsonArray();
         fields.forEach(row -> {
@@ -231,4 +230,11 @@ public class Board {
         return field.getFieldLocation().getY();
     }
 
+    public EntityColor getCurrentTurn() {
+        return currentTurn;
+    }
+
+    public void setCurrentTurn(EntityColor currentTurn) {
+        this.currentTurn = currentTurn;
+    }
 }

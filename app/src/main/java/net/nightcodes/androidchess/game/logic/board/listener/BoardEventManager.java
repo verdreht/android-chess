@@ -13,6 +13,11 @@ public class BoardEventManager {
         boardListeners.addAll(Arrays.asList(events));
     }
 
+    public void unregisterListener(BoardEvent event) {
+        boardListeners.remove(event);
+    }
+
+
     public void call(Board board) {
         for (BoardEvent event : boardListeners) {
             event.onChange(new BoardChangeEvent(board));

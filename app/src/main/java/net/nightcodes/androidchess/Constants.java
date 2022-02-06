@@ -14,7 +14,6 @@ public class Constants {
     private static Server server;
     private static Client client = new Client();
     private final static BoardEventManager boardEventManager = new BoardEventManager();
-    private static boolean isServerOnTurn;
     private static final Game game = new Game();
 
     public static void initBoard() {
@@ -23,7 +22,6 @@ public class Constants {
         } catch (IllegalLocationException e) {
             e.printStackTrace();
         }
-        boardEventManager.registerListeners(new BoardChangeListener());
     }
 
     public static BoardEventManager getBoardEventManager() {
@@ -36,14 +34,6 @@ public class Constants {
 
     public static Board getBoard() {
         return board;
-    }
-
-    public static boolean isServerOnTurn() {
-        return isServerOnTurn;
-    }
-
-    public static void setIsServerOnTurn(boolean isServerOnTurn) {
-        Constants.isServerOnTurn = isServerOnTurn;
     }
 
     public static Game getGame() {

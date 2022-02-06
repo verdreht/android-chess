@@ -6,9 +6,11 @@ import android.util.Log;
 import net.nightcodes.androidchess.Constants;
 import net.nightcodes.androidchess.client.packet.Packet;
 import net.nightcodes.androidchess.client.packet.PacketType;
-import net.nightcodes.androidchess.game.logic.board.Board;
+ import net.nightcodes.androidchess.client.packet.WaitForServerTurnPacket;
+ import net.nightcodes.androidchess.game.logic.board.Board;
+ import net.nightcodes.androidchess.game.logic.board.EntityColor;
 
-import java.io.BufferedReader;
+ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -45,7 +47,10 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
                         Packet packet = queue.poll();
                         if(packet != null) {
                             writer.println(packet.toData());
-                            Packet response = Packet.fromData(reader.readLine());
+                            String content = reader.readLine();
+                            Log.e("doInBackground():", content);
+
+                            Packet response = Packet.fromData(content);
                             response.setID(packet.getID());
 
                             publishProgress(response);
@@ -71,7 +76,11 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
             if(response.getPacketType() == PacketType.SENDING_BOARD) {
                 Board board = Board.fromJson(response.getJsonElement().getAsJsonObject());
                 Constants.setBoard(board);
-
+                Log.e("seeeega", board.getCurrentTurn().name());
+                if(board.getCurrentTurn() == EntityColor.WHITE) {
+                    queue.add(new WaitForServerTurnPacket().build());
+                    Log.e("waitForServerTurn", "Waiting for turn of server.");
+                }
 
                 Log.e("onProgressUpdate():", "Board received: " + board.toJson());
             }
