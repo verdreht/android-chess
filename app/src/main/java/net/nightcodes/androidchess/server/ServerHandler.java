@@ -63,7 +63,10 @@ public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
 
                         }
                     }
-
+                    Log.e("currentTurn_now", Constants.getBoard().getCurrentTurn().name());
+                    if (Constants.getBoard().getCurrentTurn().equals(EntityColor.WHITE)) {
+                        Constants.setMoveLock(false);
+                    }
                     line = reader.readLine();
                 }
 

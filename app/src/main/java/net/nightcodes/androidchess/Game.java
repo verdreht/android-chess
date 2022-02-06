@@ -261,36 +261,36 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
-        if (view instanceof Button) {
+        if (!Constants.isMoveLock()) {
+            if (view instanceof Button) {
 
-            if (isFirstClick) {
-                if (isFieldExisting(view.getId(), fieldButtonList)) {
-                    this.firstClickedField = getButtonById(view.getId());
-                    if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
-                        this.firstSelectedField = getClickedField(firstClickedField.getId());
-                        movingEntity = this.firstSelectedField.getFieldEntity();
-                        isFirstClick = false;
+                if (isFirstClick) {
+                    if (isFieldExisting(view.getId(), fieldButtonList)) {
+                        this.firstClickedField = getButtonById(view.getId());
+                        if (imageCollectionContainsImageAsset(firstClickedField.getBackground(), imageAssets)) {
+                            this.firstSelectedField = getClickedField(firstClickedField.getId());
+                            movingEntity = this.firstSelectedField.getFieldEntity();
+                            isFirstClick = false;
+                        }
+                    }
+
+                } else {
+                    if (isFieldExisting(view.getId(), fieldButtonList)) {
+                        this.secondClickedField = findViewById(view.getId());
+
+                        this.secondSelectedField = getClickedField(secondClickedField.getId());
+                        if (Constants.getBoard().isAllowedToMove(movingEntity, firstSelectedField, secondSelectedField)) {
+                            Constants.getBoard().move(movingEntity, firstSelectedField, secondSelectedField);
+                            Constants.setMoveLock(true);
+                            Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
+                            firstClickedField.setBackground(setFieldAfterMove());
+                            secondClickedField.setBackground(newEntityIcon);
+                        }
+
+                        //resetting clickValue to make next move
+                        isFirstClick = true;
                     }
                 }
-
-            } else {
-                if (isFieldExisting(view.getId(), fieldButtonList)) {
-                    this.secondClickedField = findViewById(view.getId());
-
-                    this.secondSelectedField = getClickedField(secondClickedField.getId());
-                    //TODO: check if move is valid
-                    if (Constants.getBoard().isAllowedToMove(movingEntity, firstSelectedField, secondSelectedField)) {
-                        Constants.getBoard().move(movingEntity, firstSelectedField, secondSelectedField);
-                        Drawable newEntityIcon = findEntityDrawableForCurrentMove(firstClickedField.getBackground());
-                        firstClickedField.setBackground(setFieldAfterMove());
-                        secondClickedField.setBackground(newEntityIcon);
-                    }
-                    //resetting clickValue to make next move
-                    isFirstClick = true;
-
-                    //TODO: lock player's move-function when it's not his turn!!!
-                }
-
             }
         }
     }

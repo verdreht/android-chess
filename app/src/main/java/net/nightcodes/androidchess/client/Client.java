@@ -6,11 +6,11 @@ import android.util.Log;
 import net.nightcodes.androidchess.Constants;
 import net.nightcodes.androidchess.client.packet.Packet;
 import net.nightcodes.androidchess.client.packet.PacketType;
- import net.nightcodes.androidchess.client.packet.WaitForServerTurnPacket;
- import net.nightcodes.androidchess.game.logic.board.Board;
- import net.nightcodes.androidchess.game.logic.board.EntityColor;
+import net.nightcodes.androidchess.client.packet.WaitForServerTurnPacket;
+import net.nightcodes.androidchess.game.logic.board.Board;
+import net.nightcodes.androidchess.game.logic.board.EntityColor;
 
- import java.io.BufferedReader;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -40,15 +40,18 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+                //set moveLock for Client (has to wait for the Server's first move)
+                Constants.setMoveLock(true);
+
                 while(alive) {
                     if(!queue.isEmpty()) {
-                        Log.e("doInBackground():", "New queue object is executing.");
+                        Log.e("doInBackground[CLIENT]:", "New queue object is executing.");
 
                         Packet packet = queue.poll();
                         if(packet != null) {
                             writer.println(packet.toData());
                             String content = reader.readLine();
-                            Log.e("doInNegaBeidl():", "->" + content);
+                            Log.e("doInBackground[CLIENT]:", "->" + content);
 
                             if(content != null) {
                                 Packet response = Packet.fromData(content);
@@ -61,7 +64,7 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
                 }
 
             } catch (IOException e) {
-                Log.e("doInBackGround():", e.getMessage());
+                Log.e("doInBackGround[CLIENT]:", e.getMessage());
             }
         }
         return null;
@@ -83,6 +86,10 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
                     queue.add(new WaitForServerTurnPacket().build());
                     Log.e("waitForServerTurn", "Waiting for turn of server.");
                 }
+//                else if (board.getCurrentTurn() == EntityColor.BLACK) {
+//                    Constants.setMoveLock(false);
+//                    Log.e("isOnTurn[CLIENT]:", "CLIENT is on turn");
+//                }
 
                 //TODO: Implement Game reference
 
@@ -90,6 +97,23 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
             }
         }
     }
+
+//    public void responseBoard(BoardChangeListener event, Board board) {
+//        new Thread(() -> {
+//            if(!socket.isOutputShutdown()) {
+//                try (PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
+//                    Log.e("wosnDoDrinHeast",new BoardPacket(board).build().toData());
+//                    board.setCurrentTurn(EntityColor.WHITE);
+//                    writer.println(new BoardPacket(board).build().toData());
+//                    Log.e("clientSentBoardBack", "Client sent the board back to the server");
+//                    Constants.getBoardEventManager().unregisterListener(event);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }).start();
+//    }
 
     public void sendPacket(Packet packet) {
         this.queue.add(packet);
