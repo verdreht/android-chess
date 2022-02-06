@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.nightcodes.androidchess.Constants;
@@ -143,9 +144,9 @@ public class Board {
             board.setCurrentTurn(EntityColor.BLACK);
         }
         JsonArray fields = json.get("fields").getAsJsonArray();
-        fields.forEach(row -> {
+        for(JsonElement row : fields)  {
             JsonArray column = row.getAsJsonArray();
-            column.forEach(entity -> {
+            for(JsonElement entity : column)  {
 
                 IEntity<?> newEntity = null;
 
@@ -203,8 +204,8 @@ public class Board {
                 }
 
                 board.addFieldToBoard(newField);
-            });
-        });
+            }
+        }
 
 
         return board;

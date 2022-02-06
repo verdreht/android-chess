@@ -48,12 +48,14 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
                         if(packet != null) {
                             writer.println(packet.toData());
                             String content = reader.readLine();
-                            Log.e("doInBackground():", content);
+                            Log.e("doInNegaBeidl():", "->" + content);
 
-                            Packet response = Packet.fromData(content);
-                            response.setID(packet.getID());
+                            if(content != null) {
+                                Packet response = Packet.fromData(content);
+                                response.setID(packet.getID());
 
-                            publishProgress(response);
+                                publishProgress(response);
+                            }
                         }
                     }
                 }

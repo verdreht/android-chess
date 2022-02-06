@@ -84,16 +84,19 @@ public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
     }
 
     public void responseBoard(BoardChangeListener event, Board board) {
-        if(!socket.isOutputShutdown()) {
-            try (PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
-                writer.println(new BoardPacket(board).build());
-                Log.e("serverSentBoardBack", "Server sent the board back to the client");
-                Constants.getBoardEventManager().unregisterListener(event);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        new Thread(() -> {
+            if(!socket.isOutputShutdown()) {
+                try (PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
+                    Log.e("wosnDoDrinHeast",new BoardPacket(board).build().toData());
+                    writer.println(new BoardPacket(board).build().toData());
+                    Log.e("serverSentBoardBack", "Server sent the board back to the client");
+                    Constants.getBoardEventManager().unregisterListener(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-        }
+            }
+        }).start();
     }
 
     public AppCompatActivity getActivity() {
