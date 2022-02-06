@@ -18,6 +18,8 @@ import net.nightcodes.androidchess.game.entity.Queen;
 import net.nightcodes.androidchess.game.entity.Rook;
 import net.nightcodes.androidchess.game.entity.base.IEntity;
 import net.nightcodes.androidchess.game.entity.base.ImageAssetType;
+import net.nightcodes.androidchess.game.logic.board.Board;
+import net.nightcodes.androidchess.game.logic.board.EntityColor;
 import net.nightcodes.androidchess.game.logic.board.Field;
 import net.nightcodes.androidchess.server.Server;
 import net.nightcodes.androidchess.server.broadcast.BroadcastSender;
@@ -107,6 +109,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private List<Button> blackFieldButtonList = new ArrayList<>();
     //all Fields from the 2D Board
     private List<Field> fieldList = new ArrayList<>();
+    private List<Field> tempFieldList = new ArrayList<>();
+
+    private Board tempBoardForUI;
+    private Board tempBoard;
+
     //initialize Map of fields KEY: id of the buttons, VALUE: Field that matches the buttonID(KEY)
     private Map<Integer, Field> fieldMap = new TreeMap<>();
 
@@ -132,6 +139,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
+        //setup tempBoards
+        tempBoard = Constants.getBoard();
 
         //setting default fields
         defaultFieldWhite = AppCompatResources.getDrawable(getApplicationContext(), R.drawable.entity_null_white);
@@ -261,9 +270,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
-        if (!Constants.isMoveLock()) {
+//        if (Constants.isRefreshUI()) {
+//            tempBoardForUI = Constants.getTempBoardForUI();
+//            deserializeBoardToUI();
+//            Constants.setRefreshUI(false);
+//        }
+//        if (!Constants.isMoveLock()) {
             if (view instanceof Button) {
-
                 if (isFirstClick) {
                     if (isFieldExisting(view.getId(), fieldButtonList)) {
                         this.firstClickedField = getButtonById(view.getId());
@@ -292,7 +305,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
             }
-        }
+//        }
     }
 
     public Field getFirstSelectedField() {
@@ -350,6 +363,75 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 //Black Entity moves from a black field to a white field
                 result = findImageAsset(entityType, ImageAssetType.BLACK_BRIGHT, imageAssets);
             }
+        }
+        return result;
+    }
+
+    public Drawable setFieldAfterMoveByButton(Button button) {
+        if (isWhiteField(button)) {
+            return defaultFieldWhite;
+        } else {
+            return defaultFieldBlack;
+        }
+    }
+
+    private int getButtonIdOfField(Field field) {
+        int fieldId = 0;
+        for (Map.Entry<Integer, Field> fieldEntry : fieldMap.entrySet()) {
+            if (fieldEntry.getValue().getFieldLocation() == field.getFieldLocation()) {
+                fieldId = fieldEntry.getKey();
+                break;
+            }
+        }
+        return fieldId;
+    }
+
+    public void deserializeBoardToUI() {
+        int buttonId = 0;
+
+        tempFieldList = tempBoardForUI.getAllFieldsAsList();
+        if ((Constants.getBoard() != null) && (tempBoardForUI != null)) {
+            if (tempBoardForUI.getAllFieldsAsList() != tempBoard.getAllFieldsAsList()) {
+                for (int i = 0; i < fieldList.size(); i++) {
+                    if (!tempFieldList.get(i).equals(fieldList.get(i))) {
+                        buttonId = getButtonIdOfField(tempFieldList.get(i));
+                        Button btn = getButtonById(buttonId);
+                        Drawable newDrawableForField = getDrawableByField(tempFieldList.get(i), btn);
+                        btn.setBackground(newDrawableForField);
+                    }
+                }
+            }
+        }
+    }
+
+    public Drawable getDrawableByField(Field field, Button btn) {
+        Drawable result = null;
+
+        if (field != null) {
+            result = getDrawableByEntityAndButton(field.getFieldEntity(), btn);
+        }
+
+        return result;
+    }
+
+    public Drawable getDrawableByEntityAndButton(IEntity<?> entity, Button button) {
+        Drawable result = null;
+        if (entity != null) {
+            if (entity.getEntityColor().equals(EntityColor.WHITE)) {
+                if (isWhiteField(button)) {
+                    result = findImageAsset(entity, ImageAssetType.WHITE_BRIGHT, imageAssets);
+                } else if (!isWhiteField(button)) {
+                    result = findImageAsset(entity, ImageAssetType.WHITE_DARK, imageAssets);
+                }
+            } else if (entity.getEntityColor().equals(EntityColor.BLACK)) {
+                if (isWhiteField(button)) {
+                    result = findImageAsset(entity, ImageAssetType.BLACK_BRIGHT, imageAssets);
+                } else if (!isWhiteField(button)) {
+                    result = findImageAsset(entity, ImageAssetType.BLACK_DARK, imageAssets);
+                }
+            }
+        } else {
+            result = setFieldAfterMoveByButton(button);
         }
         return result;
     }

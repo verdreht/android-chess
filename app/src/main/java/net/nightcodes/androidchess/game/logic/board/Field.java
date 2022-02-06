@@ -52,4 +52,10 @@ public class Field {
 
         return json;
     }
+
+    public boolean equals(Field field) {
+        if (this.fieldEntity.getEntityType().equals(field.getFieldEntity().getEntityType())) {
+            return true;
+        } else return false;
+    }
 }
