@@ -9,7 +9,6 @@ import net.nightcodes.androidchess.server.Server;
 public class Constants {
 
     private static Board board = Board.getInstance();
-    private static Board tempBoardForUI = Board.getInstance();
 
     private static Server server;
     private static Client client = new Client();
@@ -63,13 +62,5 @@ public class Constants {
 
     public static void setMoveLock(boolean moveLock) {
         Constants.moveLock = moveLock;
-    }
-
-    public static Board getTempBoardForUI() {
-        return tempBoardForUI;
-    }
-
-    public static void setTempBoardForUI(Board tempBoardForUI) {
-        Constants.tempBoardForUI = tempBoardForUI;
     }
 }
