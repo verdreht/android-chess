@@ -84,6 +84,8 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
                     Log.e("waitForServerTurn", "Waiting for turn of server.");
                 }
 
+                //TODO: Implement Game reference
+
                 Log.e("onProgressUpdate():", "Board received: " + board.toJson());
             }
         }

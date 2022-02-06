@@ -88,6 +88,7 @@ public class ServerHandler extends AsyncTask<Socket, Void, Boolean> {
             if(!socket.isOutputShutdown()) {
                 try (PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
                     Log.e("wosnDoDrinHeast",new BoardPacket(board).build().toData());
+                    board.setCurrentTurn(EntityColor.BLACK);
                     writer.println(new BoardPacket(board).build().toData());
                     Log.e("serverSentBoardBack", "Server sent the board back to the client");
                     Constants.getBoardEventManager().unregisterListener(event);

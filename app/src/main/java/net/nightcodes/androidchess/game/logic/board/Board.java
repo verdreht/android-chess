@@ -135,7 +135,6 @@ public class Board {
         return json;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static Board fromJson(JsonObject json) {
         Board board = Board.getInstance();
         if (json.get("current_turn").getAsString().equals("WHITE")) {
