@@ -80,7 +80,7 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
 
             if(response.getPacketType() == PacketType.SENDING_BOARD) {
                 Board board = Board.fromJson(response.getJsonElement().getAsJsonObject());
-                Constants.setBoard(board);
+                Constants.setTempBoardForUI(board);
                 Log.e("seeeega", board.getCurrentTurn().name());
                 if(board.getCurrentTurn() == EntityColor.WHITE) {
                     queue.add(new WaitForServerTurnPacket().build());
