@@ -42,13 +42,13 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
 
                 while(alive) {
                     if(!queue.isEmpty()) {
-                        Log.e("doInBackground():", "New queue object is executing.");
+                        Log.e("doInBackground[CLIENT]:", "New queue object is executing.");
 
                         Packet packet = queue.poll();
                         if(packet != null) {
                             writer.println(packet.toData());
                             String content = reader.readLine();
-                            Log.e("doInNegaBeidl():", "->" + content);
+                            Log.e("doInBackground[CLIENT]:", "->" + content);
 
                             if(content != null) {
                                 Packet response = Packet.fromData(content);
@@ -78,7 +78,7 @@ public class Client extends AsyncTask<ConnectionDetails, Packet, Packet> {
             if(response.getPacketType() == PacketType.SENDING_BOARD) {
                 Board board = Board.fromJson(response.getJsonElement().getAsJsonObject());
                 Constants.setBoard(board);
-                Log.e("seeeega", board.getCurrentTurn().name());
+                Log.e("current_Turn", board.getCurrentTurn().name());
                 if(board.getCurrentTurn() == EntityColor.WHITE) {
                     queue.add(new WaitForServerTurnPacket().build());
                     Log.e("waitForServerTurn", "Waiting for turn of server.");
